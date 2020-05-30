@@ -8,3 +8,13 @@ C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.csproj.GenerateResou
 C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.exe
 C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.pdb
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\bin\Debug\BubbleTrouble.exe.config
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\bin\Debug\BubbleTrouble.exe
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\bin\Debug\BubbleTrouble.pdb
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.csprojAssemblyReference.cache
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.BubbleTrouble.resources
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.Properties.Resources.resources
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.csproj.GenerateResource.cache
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.csproj.CoreCompileInputs.cache
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.exe
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.pdb
