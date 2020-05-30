@@ -51,7 +51,7 @@ namespace BubbleTrouble
 
         private void PbNewGame_Click(object sender, EventArgs e)
         {
-            CurrentGame = new Game(this.Height, this.Width);
+            CurrentGame = new Game(this.Width, this.Height);
             Invalidate(true);
         }
 

@@ -18,11 +18,14 @@ namespace BubbleTrouble
         /* definiranje na promenliva koja kje oznachuva ushte kolku zhivoti
          * mu preostanuvaat na igrachot (inicijalno tie se setirani na 3)
          */
-        public int LivesRemaining { get; set; } 
+        public int LivesRemaining { get; set; }
+        public Bitmap PlayerImage { get; set; }
 
         Player()
         {
             LivesRemaining = 3;
+            PlayerImage = new Bitmap(global::BubbleTrouble.Properties.Resources.imagePlayer); 
+            
         }
 
         public static Player Instance
@@ -48,6 +51,8 @@ namespace BubbleTrouble
 
         public void Draw(Graphics g, Point StartingPosition)
         {
+            //ne se tochni dimeniziite jana sredi!
+            g.DrawImage(PlayerImage, StartingPosition.X, StartingPosition.Y-350);
             
         }
 
