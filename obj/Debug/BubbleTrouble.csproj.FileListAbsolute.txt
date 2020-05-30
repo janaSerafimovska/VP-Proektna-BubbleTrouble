@@ -1,0 +1,10 @@
+C:\Users\User\Desktop\BubbleTrouble\bin\Debug\BubbleTrouble.exe.config
+C:\Users\User\Desktop\BubbleTrouble\bin\Debug\BubbleTrouble.exe
+C:\Users\User\Desktop\BubbleTrouble\bin\Debug\BubbleTrouble.pdb
+C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.csprojAssemblyReference.cache
+C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.BubbleTrouble.resources
+C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.Properties.Resources.resources
+C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.csproj.GenerateResource.cache
+C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.exe
+C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.pdb
