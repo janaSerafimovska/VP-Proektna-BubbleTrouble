@@ -10,7 +10,7 @@ namespace BubbleTrouble
     {
         private static Player instance = null;
         private static readonly object padlock = new object();
-
+ 
         Player()
         {            
         }
