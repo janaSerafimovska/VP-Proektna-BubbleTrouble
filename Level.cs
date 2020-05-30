@@ -5,11 +5,13 @@ using System.Collections.Generic;
  */
 namespace BubbleTrouble
 {
+    
     public abstract class Level
     {
         public int LevelID { get; set; }
         public List<Obstacle>  Obstacles{ get; set; }
         public abstract int GetLevel();
+        public int MyProperty { get; set; }
 
 
     }   
