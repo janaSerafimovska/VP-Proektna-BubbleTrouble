@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace BubbleTrouble
 {
+    /* Klasa koja kje sluzhi za iscrtuvanje na prepreki od koi topkite
+     * kje mozhat da se udrat
+     */
     public class Obstacle
     {
         public Color ObstacleColor { get; set; }
@@ -16,16 +19,20 @@ namespace BubbleTrouble
         public Point BottomLeft { get; set; }
         public Point BottomRight { get; set; }
 
-        public void DrawObstacle(Color color, Point topLeft, Point topRight, Point bottomRight, Point bottomLeft, Graphics canvas)
+        public Obstacle(Color color, Point topLeft, Point topRight, Point bottomRight, Point bottomLeft)
         {
-            Brush brush = new SolidBrush(color);
-            Pen pen = new Pen(color, 1);
             ObstacleColor = color;
             TopRight = topRight;
             TopLeft = topLeft;
             BottomLeft = bottomLeft;
             BottomRight = bottomRight;
+        }
 
+        public void DrawObstacle( Graphics canvas)
+        {
+            Brush brush = new SolidBrush(ObstacleColor);
+            Pen pen = new Pen(Color.Black, 1);
+            
             Point[] obstacle = { TopLeft, TopRight, BottomLeft, BottomRight };
             canvas.DrawPolygon(pen, obstacle);
             canvas.FillPolygon(brush, obstacle);

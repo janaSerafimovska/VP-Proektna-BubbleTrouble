@@ -18,6 +18,7 @@ namespace BubbleTrouble
     public partial class BubbleTrouble : Form
     {
         SoundPlayer player;
+        MainMenu menu;
 
         /* Se zachuvuvaat inicijalnite korrdinati na formata za nova igra i menuvanje 
          * na kontrolite za da se znae nivnata pozicioniranost pri vrakjanje na 
@@ -42,6 +43,7 @@ namespace BubbleTrouble
         public BubbleTrouble()
         {
             InitializeComponent();
+            menu = new MainMenu();
             //player = new SoundPlayer(BubbleTrouble.);
             //player.Play();
         }
@@ -50,7 +52,7 @@ namespace BubbleTrouble
 
         private void PbNewGame_Click(object sender, EventArgs e)
         {
-
+            menu.StartGame();
         }
 
         private void BubbleTrouble_Resize(object sender, EventArgs e)
