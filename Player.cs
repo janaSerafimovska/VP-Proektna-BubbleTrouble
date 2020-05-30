@@ -32,6 +32,12 @@ namespace BubbleTrouble
             }
 
         }
+
+        public bool isHit()
+        {
+
+        }
+
+
     }
- 
 }
