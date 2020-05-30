@@ -13,9 +13,10 @@ namespace BubbleTrouble
     //Klasa koja e izvedena od klasata Level i go opisuva prvoto nivo.
     public class LevelOne : Level
     {
+        
         public LevelOne(int LevelID, Point StartingPositions) : base(LevelID, StartingPositions)
         {
-            
+         
         }
 
         //metod koj dodava prepreka vo listata od prepreki.

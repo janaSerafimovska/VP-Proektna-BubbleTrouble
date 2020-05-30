@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -9,9 +10,8 @@ using System.Windows.Forms;
 namespace BubbleTrouble
 {
     public class Game
-    {
+    { 
         public Level Level { get; set; }
-
         public Game(int Height, int Width)
         {
             Level = new LevelOne(1, new Point(Width / 2, Height - 20));
