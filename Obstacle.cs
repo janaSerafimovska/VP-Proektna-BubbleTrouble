@@ -28,7 +28,7 @@ namespace BubbleTrouble
             BottomRight = bottomRight;
         }
 
-        public void DrawObstacle( Graphics canvas)
+        public void Draw( Graphics canvas)
         {
             Brush brush = new SolidBrush(ObstacleColor);
             Pen pen = new Pen(Color.Black, 1);

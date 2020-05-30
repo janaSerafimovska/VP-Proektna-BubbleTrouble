@@ -16,22 +16,30 @@ namespace BubbleTrouble
 
         public List<Obstacle> Obstacles;
         public int LevelID { get; set; }
-        public abstract int GetLevel();
         public Level(int LevelID, Point StartingPosition)
         {
             this.LevelID = LevelID;
             this.StartingPosition = StartingPosition;
+            Balls = new List<Ball>();
+            Obstacles = new List<Obstacle>();
         }
 
         public void DrawLevel(Graphics g)
         {
             Player.Draw(g, StartingPosition);
             foreach (Ball ball in Balls) ball.Draw(g);
-            foreach (Obstacle obstacle in Obstacles) obstacle.DrawObstacle(g); 
+            foreach (Obstacle obstacle in Obstacles) obstacle.Draw(g); 
+        }
+
+        public void MovePlayer(int dx, int dy)
+        {
+            Player.Move(dx, dy);
         }
 
         public abstract void GenerateObstacles();
         public abstract void AddObstacle(Obstacle ToAdd);
+
+        public abstract int GetLevel();
 
     }   
 }

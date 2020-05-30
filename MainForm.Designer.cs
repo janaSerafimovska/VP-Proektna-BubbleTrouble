@@ -38,9 +38,10 @@ namespace BubbleTrouble
             // pbNewGame
             // 
             this.pbNewGame.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbNewGame.Location = new System.Drawing.Point(116, 255);
+            this.pbNewGame.Location = new System.Drawing.Point(180, 370);
+            this.pbNewGame.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pbNewGame.Name = "pbNewGame";
-            this.pbNewGame.Size = new System.Drawing.Size(206, 54);
+            this.pbNewGame.Size = new System.Drawing.Size(320, 78);
             this.pbNewGame.TabIndex = 0;
             this.pbNewGame.TabStop = false;
             this.pbNewGame.Click += new System.EventHandler(this.PbNewGame_Click);
@@ -48,26 +49,30 @@ namespace BubbleTrouble
             // pbShowControls
             // 
             this.pbShowControls.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbShowControls.Location = new System.Drawing.Point(116, 326);
+            this.pbShowControls.Location = new System.Drawing.Point(180, 473);
+            this.pbShowControls.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pbShowControls.Name = "pbShowControls";
-            this.pbShowControls.Size = new System.Drawing.Size(206, 54);
+            this.pbShowControls.Size = new System.Drawing.Size(320, 78);
             this.pbShowControls.TabIndex = 1;
             this.pbShowControls.TabStop = false;
             // 
             // BubbleTrouble
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BubbleTrouble.Properties.Resources.Background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(824, 580);
+            this.ClientSize = new System.Drawing.Size(1282, 841);
             this.Controls.Add(this.pbShowControls);
             this.Controls.Add(this.pbNewGame);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "BubbleTrouble";
             this.Text = "Bubble Trouble";
             this.Load += new System.EventHandler(this.BubbleTrouble_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.BubbleTrouble_Paint);
             this.Resize += new System.EventHandler(this.BubbleTrouble_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pbNewGame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbShowControls)).EndInit();

@@ -18,7 +18,7 @@ namespace BubbleTrouble
     public partial class BubbleTrouble : Form
     {
         SoundPlayer player;
-        MainMenu menu;
+        Game CurrentGame;
 
         /* Se zachuvuvaat inicijalnite korrdinati na formata za nova igra i menuvanje 
          * na kontrolite za da se znae nivnata pozicioniranost pri vrakjanje na 
@@ -43,7 +43,6 @@ namespace BubbleTrouble
         public BubbleTrouble()
         {
             InitializeComponent();
-            menu = new MainMenu();
             //player = new SoundPlayer(BubbleTrouble.);
             //player.Play();
         }
@@ -52,7 +51,8 @@ namespace BubbleTrouble
 
         private void PbNewGame_Click(object sender, EventArgs e)
         {
-            menu.StartGame();
+            CurrentGame = new Game(this.Height, this.Width);
+            Invalidate(true);
         }
 
         private void BubbleTrouble_Resize(object sender, EventArgs e)
@@ -63,6 +63,7 @@ namespace BubbleTrouble
               * kje se povikuva samo koga kje nastane maxsimiziranje/normaliziranje/minimizacija
               * na prozorecot )
             */
+             
             WindowFormChanged();
         }
 
@@ -106,6 +107,18 @@ namespace BubbleTrouble
             initialSizeNewGame = pbNewGame.Size;
             initialSizeControls = pbShowControls.Size;
             //initialCoordinatesVolume = pbVolume.Location;
+        }
+
+        private void BubbleTrouble_Paint(object sender, PaintEventArgs e)
+        {
+            if (CurrentGame != null)
+            {
+                e.Graphics.Clear(Color.Gray);
+                pbNewGame.Visible = false;
+                pbShowControls.Visible = false;
+                CurrentGame.StartCurrentLevel(e.Graphics);
+                
+            }
         }
     }
 }

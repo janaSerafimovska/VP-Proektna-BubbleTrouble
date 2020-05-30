@@ -48,6 +48,11 @@ namespace BubbleTrouble
 
         public void Draw(Graphics g, Point StartingPosition)
         {
+            
+        }
+
+        public void Move(int dx, int dy)
+        {
 
         }
 
