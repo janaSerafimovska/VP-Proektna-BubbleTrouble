@@ -51,8 +51,8 @@ namespace BubbleTrouble
 
         public void Draw(Graphics g, Point StartingPosition)
         {
-            //ne se tochni dimeniziite jana sredi!
-            g.DrawImage(PlayerImage, StartingPosition.X, StartingPosition.Y-350);
+            
+            g.DrawImage(PlayerImage, StartingPosition.X, StartingPosition.Y-127);
             
         }
 
