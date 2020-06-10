@@ -24,7 +24,7 @@ namespace BubbleTrouble
         Player()
         {
             LivesRemaining = 3;
-            PlayerImage = new Bitmap(global::BubbleTrouble.Properties.Resources.imagePlayer); 
+            PlayerImage = new Bitmap(global::BubbleTrouble.Properties.Resources.imagePlayerFinal); 
             
         }
 
