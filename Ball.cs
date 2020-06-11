@@ -45,33 +45,53 @@ namespace BubbleTrouble
             brush.Dispose();
 
         }
+        //Funkcija koja gi odreduva novite pozicii na topceto
+        public void GetNewPositions() {
+            int BallHorizontalBound = Center.X + vx;
+            int BallVerticalBound = Center.Y + vy;
+            Center = new Point(BallHorizontalBound, BallVerticalBound);
+        }
+        //Funcii so koi dobivame krajni tocki na topkite
+
+        public int LeftBound() {
+            return Center.X - Radius;
+        }
+        public int RightBound()
+        {
+            return Center.X + Radius;
+        }
+        public int UpperBound()
+        {
+            return Center.Y - Radius;
+        }
+        public int BottomBound()
+        {
+            return Center.Y + Radius;
+        }
+
 
         //Funkcija koja ovozmozuva dvizenje na topceto soglasno gravitacija
         //Pri kolizija so horizontalnite dzidovi topkata menuva nasoka
         //so menuvanje na znakot, se menuva nasokata
-        
+
         //TODO: Da sopre so namaluvanje na vy koga ke dojde do visina na coveceto
         public void Move()
         {
-            int BallHorizontalBound = Center.X + vx;
-            int BallVerticalBound = Center.Y + vy;
-            Center = new Point(BallHorizontalBound, BallVerticalBound);
-
-            if (BallHorizontalBound < 0 || BallHorizontalBound > HorizontalBound)
+            if (LeftBound() < 0 || RightBound() > HorizontalBound)
             {
                 vx *= -1;
             }
-            if (BallVerticalBound <= 0)
+            if (UpperBound() <= 0)
             {
                 vy *= -1;
             }
-            if (BallVerticalBound > VerticalBound)
+            if (BottomBound() > VerticalBound)
             {
                 vy *= -1;
                 vy += 1; // po kolizija so zemjata maksimalnata visina se namaluva
             }
             vy++; // efekt na gravitacija
-            if (BallVerticalBound > VerticalBound) Center = new Point(Center.X, VerticalBound + Radius);
+            if (BottomBound() > VerticalBound) Center = new Point(Center.X, VerticalBound + Radius);
 
         }
     }
