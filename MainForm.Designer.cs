@@ -79,6 +79,7 @@ namespace BubbleTrouble
             this.Text = "Bubble Trouble";
             this.Load += new System.EventHandler(this.BubbleTrouble_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.BubbleTrouble_Paint);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BubbleTrouble_KeyPress);
             this.Resize += new System.EventHandler(this.BubbleTrouble_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pbNewGame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbShowControls)).EndInit();

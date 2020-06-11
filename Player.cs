@@ -20,12 +20,13 @@ namespace BubbleTrouble
          */
         public int LivesRemaining { get; set; }
         public Bitmap PlayerImage { get; set; }
+        public Point CurrentPosition { get; set; }
 
         Player()
         {
             LivesRemaining = 3;
-            PlayerImage = new Bitmap(global::BubbleTrouble.Properties.Resources.imagePlayerFinal); 
-            
+            PlayerImage = new Bitmap(global::BubbleTrouble.Properties.Resources.imagePlayerFinal);
+        
         }
 
         public static Player Instance
@@ -59,6 +60,12 @@ namespace BubbleTrouble
         public void Move(int dx, int dy)
         {
 
+        }
+
+        public void Shoot(Point coordinates,Graphics e)
+        {
+            Pen pen = new Pen(Color.Black, 2);
+            e.DrawLine(pen, coordinates.X, coordinates.Y, coordinates.X, 0);
         }
 
 

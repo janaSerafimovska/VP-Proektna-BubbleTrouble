@@ -120,6 +120,15 @@ namespace BubbleTrouble
         {
             pbNewGame.Image = global::BubbleTrouble.Properties.Resources.newGameBtn;
         }
+
+        private void BubbleTrouble_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if()
+            {
+                Player.Instance.Shoot(P)
+            }
+           
+        }
     }
 }
 
