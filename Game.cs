@@ -35,5 +35,9 @@ namespace BubbleTrouble
         {
             if (Player.Instance.GetCurrentPosition().X+215 < this.Width) Level.MovePlayer(20, 0);
         }
+        public void PlayerShoot()
+        {
+            Level.PlayerShoot();
+        }
     }
 }

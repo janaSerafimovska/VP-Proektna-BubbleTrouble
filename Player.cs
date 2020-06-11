@@ -21,13 +21,21 @@ namespace BubbleTrouble
          */
         public int LivesRemaining { get; set; }
         public Bitmap PlayerImage { get; set; }
+
+        public bool isShooting { get; set; }
         //public Point CurrentPosition { get; set; }
 
         Player()
         {
             LivesRemaining = 3;
             PlayerImage = new Bitmap(global::BubbleTrouble.Properties.Resources.imagePlayerFinal);
+            isShooting = false;
         
+        }
+
+        public void ChangeShootingStatus()
+        {
+            isShooting = !isShooting;
         }
 
         public static Player Instance
@@ -63,6 +71,14 @@ namespace BubbleTrouble
 
         public void Draw(Graphics g)
         {
+            if(isShooting)
+            {
+                Pen pen = new Pen(Color.Black, 1);
+                g.DrawLine(pen, CurrentPosition.X+20, CurrentPosition.Y-100, CurrentPosition.X+20, 0);
+                Shoot();
+                
+
+            }
             g.DrawImage(PlayerImage, CurrentPosition.X, CurrentPosition.Y-100);   
         }
 
@@ -71,10 +87,9 @@ namespace BubbleTrouble
             CurrentPosition = new Point(CurrentPosition.X+dx, CurrentPosition.Y+dy);
         }
 
-        public void Shoot(Point coordinates,Graphics e)
+        public void Shoot()
         {
-            Pen pen = new Pen(Color.Black, 2);
-            e.DrawLine(pen, coordinates.X, coordinates.Y, coordinates.X, 0);
+            ChangeShootingStatus();
         }
 
 

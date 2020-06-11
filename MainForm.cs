@@ -138,6 +138,19 @@ namespace BubbleTrouble
             }
      
         }
+
+        private void BubbleTrouble_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (CurrentGame != null)
+            {
+                if (e.KeyCode == Keys.Space)
+                {
+                    Player.Instance.ChangeShootingStatus();
+                }
+
+                Invalidate(true);
+            }
+        }
     }
 }
 

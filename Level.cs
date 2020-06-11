@@ -40,6 +40,11 @@ namespace BubbleTrouble
             Player.Move(dx, dy);
         }
 
+        public void PlayerShoot()
+        {
+            Player.Instance.Shoot();
+        }
+
         public abstract void GenerateObstacles();
         public abstract void AddObstacle(Obstacle ToAdd);
 
