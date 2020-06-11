@@ -26,7 +26,11 @@ namespace BubbleTrouble
 
         public void DrawLevel(Graphics g)
         {
-            Player.Draw(g, StartingPosition);
+            if (Player.Instance.GetCurrentPosition() == Point.Empty)
+            {
+                Player.setStartPosition(StartingPosition);
+            }
+            Player.Draw(g);
             foreach (Ball ball in Balls) ball.Draw(g);
             foreach (Obstacle obstacle in Obstacles) obstacle.Draw(g); 
         }

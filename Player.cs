@@ -14,6 +14,7 @@ namespace BubbleTrouble
     {
         private static Player instance = null;
         private static readonly object padlock = new object();
+        private static Point CurrentPosition = Point.Empty;
 
         /* definiranje na promenliva koja kje oznachuva ushte kolku zhivoti
          * mu preostanuvaat na igrachot (inicijalno tie se setirani na 3)
@@ -44,23 +45,30 @@ namespace BubbleTrouble
 
         }
 
+        public Point GetCurrentPosition()
+        {
+            return CurrentPosition;
+        }
+
+        public void setStartPosition(Point StartingPosition)
+        {
+            CurrentPosition = StartingPosition;
+        }
+
         public bool isHit(Ball ball)
         {
             return false;
         }
 
-        public void Draw(Graphics g, Point StartingPosition)
+        public void Draw(Graphics g)
         {
-            
-            g.DrawImage(PlayerImage, StartingPosition.X, StartingPosition.Y-127);
-            
+            g.DrawImage(PlayerImage, CurrentPosition.X, CurrentPosition.Y-127);   
         }
 
         public void Move(int dx, int dy)
         {
-
+            CurrentPosition = new Point(CurrentPosition.X+dx, CurrentPosition.Y+dy);
         }
-
 
     }
 }
