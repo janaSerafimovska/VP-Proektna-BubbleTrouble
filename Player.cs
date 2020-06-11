@@ -21,7 +21,7 @@ namespace BubbleTrouble
          */
         public int LivesRemaining { get; set; }
         public Bitmap PlayerImage { get; set; }
-        public Point CurrentPosition { get; set; }
+        //public Point CurrentPosition { get; set; }
 
         Player()
         {
@@ -63,7 +63,7 @@ namespace BubbleTrouble
 
         public void Draw(Graphics g)
         {
-            g.DrawImage(PlayerImage, CurrentPosition.X, CurrentPosition.Y-127);   
+            g.DrawImage(PlayerImage, CurrentPosition.X, CurrentPosition.Y-100);   
         }
 
         public void Move(int dx, int dy)
