@@ -24,7 +24,7 @@ namespace BubbleTrouble
         Player()
         {
             LivesRemaining = 3;
-            PlayerImage = new Bitmap(global::BubbleTrouble.Properties.Resources.imagePlayer); 
+            PlayerImage = new Bitmap(global::BubbleTrouble.Properties.Resources.imagePlayerFinal); 
             
         }
 
@@ -51,8 +51,8 @@ namespace BubbleTrouble
 
         public void Draw(Graphics g, Point StartingPosition)
         {
-            //ne se tochni dimeniziite jana sredi!
-            g.DrawImage(PlayerImage, StartingPosition.X, StartingPosition.Y-350);
+            
+            g.DrawImage(PlayerImage, StartingPosition.X, StartingPosition.Y-127);
             
         }
 

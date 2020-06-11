@@ -12,7 +12,8 @@ namespace BubbleTrouble
     public class Game
     { 
         public Level Level { get; set; }
-        public Game(int Height, int Width)
+
+        public Game(int Width, int Height)
         {
             Level = new LevelOne(1, new Point(Width / 2, Height - 20));
         }
