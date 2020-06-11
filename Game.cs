@@ -10,12 +10,15 @@ using System.Windows.Forms;
 namespace BubbleTrouble
 {
     public class Game
-    { 
+    {
+        int Width, Height;
         public Level Level { get; set; }
 
         public Game(int Width, int Height)
         {
             Level = new LevelOne(1, new Point(Width / 2, Height - 20));
+            this.Width = Width;
+            this.Height = Height;
         }
 
         public void StartCurrentLevel(Graphics g)
@@ -25,12 +28,12 @@ namespace BubbleTrouble
 
         public void MovePlayerLeft()
         {
-            Level.MovePlayer(10, 0);
+            if (Player.Instance.GetCurrentPosition().X + 90 > 0) Level.MovePlayer(-20, 0);
         }
 
         public void MovePLayerRight()
         {
-            Level.MovePlayer(-10, 0);
+            if (Player.Instance.GetCurrentPosition().X+215 < this.Width) Level.MovePlayer(20, 0);
         }
     }
 }

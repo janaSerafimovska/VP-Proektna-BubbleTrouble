@@ -121,13 +121,22 @@ namespace BubbleTrouble
             pbNewGame.Image = global::BubbleTrouble.Properties.Resources.newGameBtn;
         }
 
-        private void BubbleTrouble_KeyPress(object sender, KeyPressEventArgs e)
+        private void BubbleTrouble_KeyDown(object sender, KeyEventArgs e)
         {
-            if()
+            if (CurrentGame != null)
             {
-                Player.Instance.Shoot(P)
+                if (e.KeyCode == Keys.Left)
+                {
+                    CurrentGame.MovePlayerLeft();
+                }
+                if (e.KeyData == Keys.Right)
+                {
+                    CurrentGame.MovePLayerRight();
+                }
+
+                Invalidate(true);
             }
-           
+     
         }
     }
 }

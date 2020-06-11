@@ -29,3 +29,4 @@ C:\Users\Aleksandar\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTroub
 C:\Users\Aleksandar\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.exe
 C:\Users\Aleksandar\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.pdb
 C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.ShowControls.resources
+C:\Users\38978\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.ShowControls.resources
