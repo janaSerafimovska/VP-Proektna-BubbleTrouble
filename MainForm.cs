@@ -82,7 +82,6 @@ namespace BubbleTrouble
                 pbNewGame.Visible = false;
                 pbShowControls.Visible = false;
                 CurrentGame.StartCurrentLevel(e.Graphics);
-                
             }
         }
 
@@ -129,7 +128,7 @@ namespace BubbleTrouble
                 {
                     CurrentGame.MovePlayerLeft();
                 }
-                if (e.KeyData == Keys.Right)
+                if (e.KeyCode == Keys.Right)
                 {
                     CurrentGame.MovePLayerRight();
                 }

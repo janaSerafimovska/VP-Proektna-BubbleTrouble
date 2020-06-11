@@ -92,6 +92,5 @@ namespace BubbleTrouble
             ChangeShootingStatus();
         }
 
-
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace BubbleTrouble
 {
+    //Klasa koja kje se grizi za tekot na igrata
     public class Game
     {
         int Width, Height;
@@ -28,12 +29,12 @@ namespace BubbleTrouble
 
         public void MovePlayerLeft()
         {
-            if (Player.Instance.GetCurrentPosition().X + 90 > 0) Level.MovePlayer(-20, 0);
+            if (Player.Instance.GetCurrentPosition().X - 20 > 0) Level.MovePlayer(-20, 0);
         }
 
         public void MovePLayerRight()
         {
-            if (Player.Instance.GetCurrentPosition().X+215 < this.Width) Level.MovePlayer(20, 0);
+            if (Player.Instance.GetCurrentPosition().X + 90 < this.Width) Level.MovePlayer(20, 0);
         }
         public void PlayerShoot()
         {
