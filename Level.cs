@@ -47,7 +47,6 @@ namespace BubbleTrouble
 
         public abstract void GenerateObstacles();
         public abstract void AddObstacle(Obstacle ToAdd);
-
         public abstract int GetLevel();
 
     }   

@@ -71,7 +71,11 @@ namespace BubbleTrouble
         private void BubbleTrouble_Load(object sender, EventArgs e)
         {
 
-            //initialCoordinatesVolume = pbVolume.Location;
+            this.BackgroundImage = global::BubbleTrouble.Properties.Resources.Background;
+            pbNewGame.Image = global::BubbleTrouble.Properties.Resources.newGameBtn;
+            pbNewGame.Visible = true;
+            pbShowControls.Image = global::BubbleTrouble.Properties.Resources.showControlsBtn2;
+            pbShowControls.Visible = true;
         }
 
         private void BubbleTrouble_Paint(object sender, PaintEventArgs e)
@@ -82,6 +86,11 @@ namespace BubbleTrouble
                 pbNewGame.Visible = false;
                 pbShowControls.Visible = false;
                 CurrentGame.StartCurrentLevel(e.Graphics);
+            }
+            else
+            {
+                pbNewGame.Visible = true;
+                pbShowControls.Visible = true;
             }
         }
 
@@ -145,6 +154,10 @@ namespace BubbleTrouble
                 if (e.KeyCode == Keys.Space)
                 {
                     Player.Instance.ChangeShootingStatus();
+                }
+                if (e.KeyCode == Keys.Escape)
+                {
+                    CurrentGame = null;
                 }
 
                 Invalidate(true);

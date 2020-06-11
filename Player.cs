@@ -76,8 +76,6 @@ namespace BubbleTrouble
                 Pen pen = new Pen(Color.Black, 1);
                 g.DrawLine(pen, CurrentPosition.X+20, CurrentPosition.Y-100, CurrentPosition.X+20, 0);
                 Shoot();
-                
-
             }
             g.DrawImage(PlayerImage, CurrentPosition.X, CurrentPosition.Y-100);   
         }

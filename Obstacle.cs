@@ -39,7 +39,6 @@ namespace BubbleTrouble
 
             brush.Dispose();
             pen.Dispose();
-
         }
     }
 }
