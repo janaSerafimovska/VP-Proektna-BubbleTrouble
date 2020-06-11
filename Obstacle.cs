@@ -33,7 +33,7 @@ namespace BubbleTrouble
             Brush brush = new SolidBrush(ObstacleColor);
             Pen pen = new Pen(Color.Black, 1);
             
-            Point[] obstacle = { TopLeft, TopRight, BottomLeft, BottomRight };
+            Point[] obstacle = { TopLeft, TopRight, BottomRight, BottomLeft };
             canvas.DrawPolygon(pen, obstacle);
             canvas.FillPolygon(brush, obstacle);
 

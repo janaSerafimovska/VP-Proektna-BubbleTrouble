@@ -68,7 +68,72 @@ namespace BubbleTrouble
         {
             return Center.Y + Radius;
         }
+        //Funkcii koi proveruvaat dali topkata se sudrila so odredena strana na prepreka
 
+        public Boolean ColideCheckRight(Obstacle o)
+        {
+
+
+            if (LeftBound() > o.BottomRight.X)
+                return false;
+            if (RightBound() > o.BottomLeft.X)
+                if (UpperBound() >= o.TopRight.Y && BottomBound() <= o.BottomRight.Y)
+                    return true;
+
+            return false;
+        }
+        public Boolean ColideCheckLeft(Obstacle o)
+        {
+
+            if (RightBound() < o.BottomLeft.X)
+                return false;
+            if (LeftBound() < o.BottomRight.X)
+                if (UpperBound() >= o.TopRight.Y && BottomBound() <= o.BottomRight.Y)
+                    return true;
+
+            return false;
+        }
+
+        public Boolean ColideCheckTop(Obstacle o)
+        {
+            if (UpperBound() > o.BottomRight.Y)
+                return false;
+            if (BottomBound() > o.TopLeft.Y)
+                if (RightBound() >= o.TopLeft.X && LeftBound() <= o.TopRight.X)
+                    return true;
+            return false;
+
+
+        }
+
+        public Boolean ColideCheckBottom(Obstacle o)
+        {
+            if (BottomBound() < o.TopRight.Y)
+                return false;
+            if (UpperBound() < o.BottomLeft.Y)
+                if (RightBound() >= o.TopLeft.X && LeftBound() <= o.TopRight.X)
+                    return true;
+            return false;
+        }
+
+
+        //Funkcija koi menuvaat nasoka na topkata ako se sudrila so prepreka
+        public void ColideCheck(Obstacle obstacle)
+        {
+            if (ColideCheckRight(obstacle) == true)
+                vx *= -1;
+
+            if (ColideCheckLeft(obstacle) == true)
+                vx *= -1;
+
+            if (ColideCheckTop(obstacle) == true)
+                vy *= -1;
+
+
+            if (ColideCheckBottom(obstacle) == true)
+                vy *= -1;
+
+        }
 
         //Funkcija koja ovozmozuva dvizenje na topceto soglasno gravitacija
         //Pri kolizija so horizontalnite dzidovi topkata menuva nasoka
