@@ -168,6 +168,7 @@ namespace BubbleTrouble
             if (BottomBound() > VerticalBound) Center = new Point(Center.X, VerticalBound - Radius); // stvarno ne sum siguren sto pravis vo uslovov, go smeniv VerticalBound + Radius vo istoto samo so -.
             Center = new Point(Center.X + (vx > 0 ? Radius : -Radius) / 2, Center.Y + (vy > 0 ? Radius : -Radius) / 2); // ova go dodadov za da ima bilo kakvo dvizenje
 
+            //Da se donapravi da ne odi skroz do gore da se zema predvid progressbar i zhivoti
             //go commitnuvam ova za da raboti celiot kod
             //vo ovoj kod nikako ne se odbivaat topcinjata od obstacles i sl.
             //vidi da ne e na nekoj drug branch ili ne si komituvala nesto sto trebalo. 

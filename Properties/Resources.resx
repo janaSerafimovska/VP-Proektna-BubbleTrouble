@@ -118,22 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="newGameBtn2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Pictures\newGameBtn2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="showControlsBtn2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Pictures\showControlsBtn2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Pictures\Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="newGameBtn2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Pictures\newGameBtn2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="newGameBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Pictures\newGameBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="showControlsBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Pictures\showControlsBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imagePlayerFinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Pictures\imagePlayerFinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newGameBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Pictures\newGameBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImgLife" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImgLife.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

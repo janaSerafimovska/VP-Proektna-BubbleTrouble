@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace BubbleTrouble
 {
-    
+
     public partial class BubbleTrouble : Form
     {
         SoundPlayer player;
@@ -35,6 +35,8 @@ namespace BubbleTrouble
         private void PbNewGame_Click(object sender, EventArgs e)
         {
             CurrentGame = new Game(this.Width, this.Height);
+            TimeRemainingLevel.Maximum = CurrentGame.Level.getTimeLimit();
+            TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
             Invalidate(true);
             BallTimer.Enabled = true;
             BallTimer.Start();
@@ -45,13 +47,13 @@ namespace BubbleTrouble
             /*Funkcija koja se povikuva sekoj pat koga kje ima promena na goleminata na 
               * prozorecot
             */
-             
+
             WindowFormChanged();
         }
 
         private void WindowFormChanged()
         {
-   
+
             if (WindowState == FormWindowState.Maximized)
             {
                 int tmpWidth = (int)this.Size.Width - 7 * this.Size.Width / 8;
@@ -60,9 +62,13 @@ namespace BubbleTrouble
                 pbNewGame.Size = new Size(320, 140);
                 pbShowControls.Location = new Point(tmpWidth, tmpHeight + 150);
                 pbShowControls.Size = new Size(320, 140);
+                TimeRemainingLevel.Size = new Size(this.Width - 70, 20);
+                TimeRemainingLevel.BackColor = Color.Orange;
+                TimeRemainingLevel.Location = new Point(70, 0);
+
                 return;
             }
-            else if( WindowState == FormWindowState.Minimized)
+            else if (WindowState == FormWindowState.Minimized)
             {
                 return;
             }
@@ -89,12 +95,15 @@ namespace BubbleTrouble
                 e.Graphics.Clear(Color.Gray);
                 pbNewGame.Visible = false;
                 pbShowControls.Visible = false;
+                TimeRemainingLevel.Visible = true;
                 CurrentGame.StartCurrentLevel(e.Graphics);
+
             }
             else
             {
                 pbNewGame.Visible = true;
                 pbShowControls.Visible = true;
+                TimeRemainingLevel.Visible = false;
             }
         }
 
@@ -102,7 +111,7 @@ namespace BubbleTrouble
         {
             ShowControls newForm = new ShowControls();
 
-            if(newForm.ShowDialog()==DialogResult.OK)
+            if (newForm.ShowDialog() == DialogResult.OK)
             {
                 // Da se dopishe za da mora de se iskluchi pred da se vratish
                 // na glavna forma
@@ -146,12 +155,12 @@ namespace BubbleTrouble
                     CurrentGame.MovePLayerRight();
                 }
 
-                if (cnt%2==0)CurrentGame.MoveBalls();
+                if (cnt % 2 == 0) CurrentGame.MoveBalls();
                 cnt++;
                 if (cnt > 1000000) cnt = 0;
                 Invalidate(true);
             }
-     
+
         }
 
         private void BubbleTrouble_KeyUp(object sender, KeyEventArgs e)
@@ -176,6 +185,28 @@ namespace BubbleTrouble
             if (CurrentGame != null)
             {
                 CurrentGame.MoveBalls();
+                if (TimeRemainingLevel.Value - 1 < 0 && CurrentGame != null && CurrentGame.Level.Balls.Count != 0)
+                {
+
+                    CurrentGame = null;
+                    MessageBox.Show("You Lost"); // ova nema vaka da stoi kolku dali funkcionnira
+                    //plus da se odzeme zhivot
+
+                }
+                else if (TimeRemainingLevel.Value - 1 >= 0 && CurrentGame.Level.Balls.Count == 0)
+                {
+                    //go to next level
+                    //vo ovj sluchaj vrati se nazad :)
+                    CurrentGame = null;
+                    MessageBox.Show("LEVEL COMLETE"); // OVa nema vaka da stoi
+
+                }
+                else
+                {
+                    TimeRemainingLevel.Value -= 1;
+                }
+
+
                 Invalidate(true);
             }
         }

@@ -21,6 +21,7 @@ namespace BubbleTrouble
          */
         public int LivesRemaining { get; set; }
         public Bitmap PlayerImage { get; set; }
+        public Bitmap PlayerLife { get; set; }
         public bool isShooting { get; set; }
         public int []YShootCoordinatesForGivenX { get; set; }
 
@@ -28,6 +29,7 @@ namespace BubbleTrouble
         {
             LivesRemaining = 3;
             PlayerImage = new Bitmap(global::BubbleTrouble.Properties.Resources.imagePlayerFinal);
+            PlayerLife = new Bitmap(global::BubbleTrouble.Properties.Resources.ImgLife);
             isShooting = false;
         }
 
@@ -81,7 +83,15 @@ namespace BubbleTrouble
                 g.DrawLine(pen, CurrentPosition.X+23, CurrentPosition.Y-100, CurrentPosition.X+23, EndY);
                 Shoot();
             }
-            g.DrawImage(PlayerImage, CurrentPosition.X, CurrentPosition.Y-100);   
+            g.DrawImage(PlayerImage, CurrentPosition.X, CurrentPosition.Y-100);
+            for (int i=0;i<LivesRemaining;i++)
+            {
+                if (i == 0)
+                    g.DrawImage(PlayerLife, i, 0);
+                else
+                    g.DrawImage(PlayerLife, i*20 , 0);
+            }
+                     
         }
 
         public void Move(int dx, int dy)

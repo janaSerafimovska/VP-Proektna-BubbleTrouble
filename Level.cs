@@ -16,6 +16,7 @@ namespace BubbleTrouble
         protected int[] YShootCoordinatesForGivenX;
         public List<Ball> Balls;
         public List<Obstacle> Obstacles;
+        protected int TimeLimit;
         public int LevelID { get; set; }
 
         public Level(int LevelID, Point StartingPosition, int Width, int Height)
@@ -28,8 +29,14 @@ namespace BubbleTrouble
             for (int i = 0; i <= Width; i++) YShootCoordinatesForGivenX[i] = 0;
             this.Width = Width;
             this.Height = Height;
+            this.TimeLimit = 200; //mozhe i da ne e hardkodirano
+
         }
 
+        public int getTimeLimit()
+        {
+            return TimeLimit;
+        }
         public void DrawLevel(Graphics g)
         {
             if (Player.Instance.GetCurrentPosition() == Point.Empty)
