@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Activation;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace BubbleTrouble
 {
@@ -28,11 +22,11 @@ namespace BubbleTrouble
             BottomRight = bottomRight;
         }
 
-        public void Draw( Graphics canvas)
+        public void Draw(Graphics canvas)
         {
             Brush brush = new SolidBrush(ObstacleColor);
             Pen pen = new Pen(Color.Black, 1);
-            
+
             Point[] obstacle = { TopLeft, TopRight, BottomRight, BottomLeft };
             canvas.DrawPolygon(pen, obstacle);
             canvas.FillPolygon(brush, obstacle);

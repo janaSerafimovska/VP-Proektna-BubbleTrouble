@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace BubbleTrouble
 {
@@ -44,8 +38,8 @@ namespace BubbleTrouble
         public override void GenerateObstacles()
         {
             //No obstacles in lvl 1.
-            //Obstacle obstacle = new Obstacle(Color.Yellow, new Point(300, 200), new Point(600, 200), new Point(600, 600), new Point(300, 600));
-            //AddObstacle(obstacle);
+            Obstacle obstacle = new Obstacle(Color.Yellow, new Point(300, 200), new Point(600, 200), new Point(600, 600), new Point(300, 600));
+            AddObstacle(obstacle);
         }
 
         //Metod koj vrakja na koe nivo sme momentalno.
@@ -57,7 +51,7 @@ namespace BubbleTrouble
         public override void PreprocessShootingYs()
         {
             foreach (Obstacle obstacle in Obstacles)
-                for (int i = obstacle.BottomLeft.X; i <= obstacle.BottomRight.X; i++) 
+                for (int i = obstacle.BottomLeft.X; i <= obstacle.BottomRight.X; i++)
                     YShootCoordinatesForGivenX[i] = Math.Max(YShootCoordinatesForGivenX[i], obstacle.BottomLeft.Y);
         }
     }

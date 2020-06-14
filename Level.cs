@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms.VisualStyles;
 
 /**Abstraktna klasa od koja kje nasleduva sekoj level.
  */
 namespace BubbleTrouble
 {
-    
+
     public abstract class Level
     {
         public static Player Player = Player.Instance;
@@ -46,7 +45,7 @@ namespace BubbleTrouble
             RemoveShotAt();
             Player.Draw(g);
             foreach (Ball ball in Balls) ball.Draw(g);
-            foreach (Obstacle obstacle in Obstacles) obstacle.Draw(g); 
+            foreach (Obstacle obstacle in Obstacles) obstacle.Draw(g);
         }
 
         public void MovePlayer(int dx, int dy)
@@ -65,18 +64,19 @@ namespace BubbleTrouble
             {
                 foreach (Obstacle obstacle in Obstacles)
                     ball.ColideCheck(obstacle);
-                    ball.Move(); }
+                ball.Move();
+            }
         }
 
         public void RemoveShotAt()
         {
             if (!Player.isShooting) return;
 
-            for (int i=0; i<Balls.Count; i++)
+            for (int i = 0; i < Balls.Count; i++)
             {
-                if (Math.Abs(Balls[i].GetCenter().X - Player.GetCurrentPosition().X) <= Balls[i].GetRadius() && 
-                    Balls[i].BottomBound() > YShootCoordinatesForGivenX[Player.GetCurrentPosition().X+23]) 
-                        Balls.RemoveAt(i);
+                if (Math.Abs(Balls[i].GetCenter().X - Player.GetCurrentPosition().X) <= Balls[i].GetRadius() &&
+                    Balls[i].BottomBound() > YShootCoordinatesForGivenX[Player.GetCurrentPosition().X + 23])
+                    Balls.RemoveAt(i);
             }
         }
 
@@ -87,5 +87,5 @@ namespace BubbleTrouble
         public abstract int GetLevel();
         public abstract void PreprocessShootingYs();
 
-    }   
+    }
 }

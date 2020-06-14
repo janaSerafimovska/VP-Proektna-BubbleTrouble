@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BubbleTrouble
 {
@@ -20,8 +16,8 @@ namespace BubbleTrouble
         private Color Color { get; set; }
 
         //brzini na dvizenje na topkata po x i y oska
-        public int vx = 20;
-        public int vy = 20;
+        public int vx = 10;
+        public int vy = 10;
 
         public Ball(int Radius, Point Center, Color Color, int Width, int Height) //smenivme mesta na width i height
         {
@@ -100,8 +96,8 @@ namespace BubbleTrouble
         {
             if (UpperBound() > o.BottomRight.Y)
                 return false;
-            if (BottomBound() > o.TopLeft.Y)
-                if (Center.X - Radius >= o.TopLeft.X && Center.X - Radius <= o.TopRight.X)
+            if (BottomBound() > o.TopLeft.Y && UpperBound()<o.TopLeft.Y)
+                if (RightBound() >= o.TopLeft.X && LeftBound() <= o.TopRight.X)
                     return true;
             return false;
         }
@@ -110,7 +106,7 @@ namespace BubbleTrouble
         {
             if (BottomBound() < o.TopRight.Y)
                 return false;
-            if (UpperBound() < o.BottomLeft.Y)
+            if (UpperBound() < o.BottomLeft.Y && BottomBound()> o.BottomLeft.Y)
                 if (RightBound() >= o.TopLeft.X && LeftBound() <= o.TopRight.X)
                     return true;
             return false;

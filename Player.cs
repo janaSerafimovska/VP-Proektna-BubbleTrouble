@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace BubbleTrouble
 {
@@ -23,7 +18,7 @@ namespace BubbleTrouble
         public Bitmap PlayerImage { get; set; }
         public Bitmap PlayerLife { get; set; }
         public bool isShooting { get; set; }
-        public int []YShootCoordinatesForGivenX { get; set; }
+        public int[] YShootCoordinatesForGivenX { get; set; }
 
         Player()
         {
@@ -35,7 +30,7 @@ namespace BubbleTrouble
 
         public void SetShootEndingY(int[] ToSet)
         {
-             YShootCoordinatesForGivenX = ToSet;
+            YShootCoordinatesForGivenX = ToSet;
         }
 
         public void ChangeShootingStatus()
@@ -76,27 +71,27 @@ namespace BubbleTrouble
 
         public void Draw(Graphics g)
         {
-            if(isShooting)
+            if (isShooting)
             {
                 int EndY = YShootCoordinatesForGivenX[CurrentPosition.X + 23];
                 Pen pen = new Pen(Color.Black, 1);
-                g.DrawLine(pen, CurrentPosition.X+23, CurrentPosition.Y-100, CurrentPosition.X+23, EndY);
+                g.DrawLine(pen, CurrentPosition.X + 23, CurrentPosition.Y - 100, CurrentPosition.X + 23, EndY);
                 Shoot();
             }
-            g.DrawImage(PlayerImage, CurrentPosition.X, CurrentPosition.Y-100);
-            for (int i=0;i<LivesRemaining;i++)
+            g.DrawImage(PlayerImage, CurrentPosition.X, CurrentPosition.Y - 100);
+            for (int i = 0; i < LivesRemaining; i++)
             {
                 if (i == 0)
                     g.DrawImage(PlayerLife, i, 0);
                 else
-                    g.DrawImage(PlayerLife, i*20 , 0);
+                    g.DrawImage(PlayerLife, i * 20, 0);
             }
-                     
+
         }
 
         public void Move(int dx, int dy)
         {
-            CurrentPosition = new Point(CurrentPosition.X+dx, CurrentPosition.Y+dy);
+            CurrentPosition = new Point(CurrentPosition.X + dx, CurrentPosition.Y + dy);
         }
 
         public void Shoot()
