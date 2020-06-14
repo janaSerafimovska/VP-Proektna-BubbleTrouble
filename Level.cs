@@ -61,7 +61,11 @@ namespace BubbleTrouble
 
         public void MoveBalls()
         {
-            foreach (Ball ball in Balls) ball.Move();
+            foreach (Ball ball in Balls)
+            {
+                foreach (Obstacle obstacle in Obstacles)
+                    ball.ColideCheck(obstacle);
+                    ball.Move(); }
         }
 
         public void RemoveShotAt()
