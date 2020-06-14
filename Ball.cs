@@ -22,13 +22,13 @@ namespace BubbleTrouble
         public int vx = 3;
         public int vy = 2;
 
-        public Ball(int Radius, Point Center, Color Color, int Height, int Width)
+        public Ball(int Radius, Point Center, Color Color, int Width, int Height) //smenivme mesta na width i height
         {
             this.Color = Color;
             this.Center = Center;
             this.Radius = Radius;
-            this.HorizontalBound = Width;
-            this.VerticalBound = Height;
+            this.HorizontalBound = Width-Radius; // tuka odzemavme radius, za da ne iskoci topceto koga se dvizi
+            this.VerticalBound = Height-Radius; //isto i tuka
 
             //Najdi nacin da ne se hardkodirani
             /*
@@ -37,6 +37,16 @@ namespace BubbleTrouble
            */
 
 
+        }
+
+        public Point GetCenter()
+        {
+            return Center;
+        }
+
+        public int GetRadius()
+        {
+            return Radius;
         }
         public void Draw(Graphics g)
         {
@@ -72,8 +82,6 @@ namespace BubbleTrouble
 
         public Boolean ColideCheckRight(Obstacle o)
         {
-
-
             if (LeftBound() > o.BottomRight.X)
                 return false;
             if (RightBound() > o.BottomLeft.X)
@@ -153,13 +161,22 @@ namespace BubbleTrouble
             if (BottomBound() > VerticalBound)
             {
                 vy *= -1;
-                vy += 1; // po kolizija so zemjata maksimalnata visina se namaluva
+                //vy += 1; // po kolizija so zemjata maksimalnata visina se namaluva      ------> pls ne go stavaj ova :)
             }
-            vy++; // efekt na gravitacija
-            if (BottomBound() > VerticalBound) Center = new Point(Center.X, VerticalBound + Radius);
+            //vy++; // efekt na gravitacija ---------> mislam deka nema potreba od ova - osven ako ne dogovorime deka e bolje ako ima gravitacija
 
+            if (BottomBound() > VerticalBound) Center = new Point(Center.X, VerticalBound - Radius); // stvarno ne sum siguren sto pravis vo uslovov, go smeniv VerticalBound + Radius vo istoto samo so -.
+            Center = new Point(Center.X + (vx > 0 ? Radius : -Radius) / 2, Center.Y + (vy > 0 ? Radius : -Radius) / 2); // ova go dodadov za da ima bilo kakvo dvizenje
+
+            //go commitnuvam ova za da raboti celiot kod
+            //vo ovoj kod nikako ne se odbivaat topcinjata od obstacles i sl.
+            //vidi da ne e na nekoj drug branch ili ne si komituvala nesto sto trebalo. 
+            
+
+            //druga rabota, bi sakal da sedneme SITE zaedno za da implementirame observer megju level i game za da ima notify koga ke treba da se smeni levelot..... 
+            //toa malce ke ni go naprai kasha kodot... ne bi bilo losho use sea da dzirneme dali moze malce poubavo da gi napiseme rabotite.
+
+            //ty :P
         }
     }
-
-
 }

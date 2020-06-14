@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Media;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace BubbleTrouble
     {
         SoundPlayer player;
         Game CurrentGame;
+        int cnt = 0;
 
 
         Point initialCoordinatesVolume = new Point(877, 12);
@@ -34,6 +36,8 @@ namespace BubbleTrouble
         {
             CurrentGame = new Game(this.Width, this.Height);
             Invalidate(true);
+            BallTimer.Enabled = true;
+            BallTimer.Start();
         }
 
         private void BubbleTrouble_Resize(object sender, EventArgs e)
@@ -142,6 +146,9 @@ namespace BubbleTrouble
                     CurrentGame.MovePLayerRight();
                 }
 
+                if (cnt%2==0)CurrentGame.MoveBalls();
+                cnt++;
+                if (cnt > 1000000) cnt = 0;
                 Invalidate(true);
             }
      
@@ -160,6 +167,15 @@ namespace BubbleTrouble
                     CurrentGame = null;
                 }
 
+                Invalidate(true);
+            }
+        }
+
+        private void BallTimer_Tick(object sender, EventArgs e)
+        {
+            if (CurrentGame != null)
+            {
+                CurrentGame.MoveBalls();
                 Invalidate(true);
             }
         }

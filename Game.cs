@@ -17,7 +17,7 @@ namespace BubbleTrouble
 
         public Game(int Width, int Height)
         {
-            Level = new LevelOne(1, new Point(Width / 2, Height - 20));
+            Level = new LevelOne(1, new Point(Width / 2, Height - 20), Width, Height);
             this.Width = Width;
             this.Height = Height;
         }
@@ -39,6 +39,11 @@ namespace BubbleTrouble
         public void PlayerShoot()
         {
             Level.PlayerShoot();
+        }
+
+        public void MoveBalls()
+        {
+            Level.MoveBalls();
         }
     }
 }
