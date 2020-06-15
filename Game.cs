@@ -19,7 +19,7 @@ namespace BubbleTrouble
         {
             Level.DrawLevel(g);
         }
-
+        
         public void MovePlayerLeft()
         {
             if (Player.Instance.GetCurrentPosition().X - 20 > 0) Level.MovePlayer(-20, 0);

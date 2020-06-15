@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
+    <Compile Include="BlueBall.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GreenBall.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelOne.cs" />
     <Compile Include="MainForm.cs">
@@ -59,6 +61,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedBall.cs" />
     <Compile Include="ShowControls.cs">
       <SubType>Form</SubType>
     </Compile>

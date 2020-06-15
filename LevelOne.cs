@@ -28,9 +28,9 @@ namespace BubbleTrouble
 
         public override void GenerateBalls()
         {
-            Ball ball = new Ball(25, new Point(150, 50), Color.Red, Width, Height);
+            Ball ball = new GreenBall(30, new Point(150, 50), Color.SeaGreen, Width, Height);
             AddBall(ball);
-            ball = new Ball(50, new Point(50, 200), Color.Blue, Width, Height);
+            ball = new GreenBall(30, new Point(50, 200), Color.SeaGreen, Width, Height);
             AddBall(ball);
         }
 
@@ -38,8 +38,8 @@ namespace BubbleTrouble
         public override void GenerateObstacles()
         {
             //No obstacles in lvl 1.
-            Obstacle obstacle = new Obstacle(Color.Yellow, new Point(300, 200), new Point(600, 200), new Point(600, 600), new Point(300, 600));
-            AddObstacle(obstacle);
+           // Obstacle obstacle = new Obstacle(Color.Yellow, new Point(300, 200), new Point(600, 200), new Point(600, 600), new Point(300, 600));
+           // AddObstacle(obstacle);
         }
 
         //Metod koj vrakja na koe nivo sme momentalno.

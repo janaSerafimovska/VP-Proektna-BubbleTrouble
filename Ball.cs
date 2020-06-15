@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace BubbleTrouble
 {
     //ToDo: povik za da se naprai proverka na sudir so prepreka
     //Glavna klasa ball od koja ke se izveduvaat topki od razlicna boja i golemina
-    public class Ball
+    public abstract class Ball
     {
         //dimenzii na prozorecot za igra
         private int HorizontalBound;
         private int VerticalBound;
+        //dimenzii na formata
+        public int Width;
+        public int Height;
         //osnovni karakteristiki na topkata
         private int Radius { get; set; }
         private Point Center { get; set; }
@@ -26,7 +30,8 @@ namespace BubbleTrouble
             this.Radius = Radius;
             this.HorizontalBound = Width - Radius; // tuka odzemavme radius, za da ne iskoci topceto koga se dvizi
             this.VerticalBound = Height - Radius; //isto i tuka
-
+            this.Width = Width;
+            this.Height = Height;
         }
 
         public Point GetCenter()
@@ -52,6 +57,11 @@ namespace BubbleTrouble
             int BallVerticalBound = Center.Y + vy;
             Center = new Point(BallHorizontalBound, BallVerticalBound);
         }
+        //Funkcija koja menja nasoka po X oska
+        public void InvertDirection()
+        {
+            vx*= -1;
+        }
         //Funcii so koi dobivame krajni tocki na topkite
 
         public int LeftBound()
@@ -76,7 +86,7 @@ namespace BubbleTrouble
         {
             if (LeftBound() > o.BottomRight.X)
                 return false;
-            if (RightBound() > o.BottomLeft.X)
+            if (RightBound() > o.BottomLeft.X && LeftBound()<o.BottomLeft.X)
                 if (this.Center.Y - Radius >= o.TopRight.Y && this.Center.Y + Radius <= o.BottomRight.Y)
                     return true;
             return false;
@@ -86,7 +96,7 @@ namespace BubbleTrouble
 
             if (RightBound() < o.BottomLeft.X)
                 return false;
-            if (LeftBound() < o.BottomRight.X)
+            if (LeftBound() < o.BottomRight.X && RightBound()>o.BottomRight.X)
                 if (UpperBound() >= o.TopRight.Y && BottomBound() <= o.BottomRight.Y)
                     return true;
             return false;
@@ -157,5 +167,6 @@ namespace BubbleTrouble
 
             //ty :P
         }
+        public abstract List<Ball> SplitBall(Point p);
     }
 }

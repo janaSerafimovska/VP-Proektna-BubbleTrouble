@@ -76,9 +76,18 @@ namespace BubbleTrouble
             {
                 if (Math.Abs(Balls[i].GetCenter().X - Player.GetCurrentPosition().X) <= Balls[i].GetRadius() &&
                     Balls[i].BottomBound() > YShootCoordinatesForGivenX[Player.GetCurrentPosition().X + 23])
+                {
+                    List<Ball> newBalls=Balls[i].SplitBall(Balls[i].GetCenter()); // povikuva funkcija koja ke generira dve topcinja vo tockata kajsto bila pogodena topkata
                     Balls.RemoveAt(i);
+                    if (newBalls.Count != 0)
+                    {
+                        Balls.Insert(0,newBalls[0]);
+                        Balls.Insert(0,newBalls[1]);
+                    }
+                }
             }
         }
+
 
         public abstract void GenerateObstacles();
         public abstract void GenerateBalls();
