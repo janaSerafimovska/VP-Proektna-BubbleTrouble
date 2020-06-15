@@ -34,8 +34,16 @@ namespace BubbleTrouble
             this.pbShowControls = new System.Windows.Forms.PictureBox();
             this.BallTimer = new System.Windows.Forms.Timer(this.components);
             this.TimeRemainingLevel = new System.Windows.Forms.ProgressBar();
+            this.pbHelp = new System.Windows.Forms.PictureBox();
+            this.pbScore = new System.Windows.Forms.PictureBox();
+            this.lblScore = new System.Windows.Forms.Label();
+            this.pbLevel = new System.Windows.Forms.PictureBox();
+            this.lblLevelNumber = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbNewGame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbShowControls)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScore)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLevel)).BeginInit();
             this.SuspendLayout();
             // 
             // pbNewGame
@@ -43,10 +51,8 @@ namespace BubbleTrouble
             this.pbNewGame.BackColor = System.Drawing.Color.Transparent;
             this.pbNewGame.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbNewGame.Image = global::BubbleTrouble.Properties.Resources.newGameBtn;
-            this.pbNewGame.Location = new System.Drawing.Point(116, 255);
+            resources.ApplyResources(this.pbNewGame, "pbNewGame");
             this.pbNewGame.Name = "pbNewGame";
-            this.pbNewGame.Size = new System.Drawing.Size(206, 54);
-            this.pbNewGame.TabIndex = 0;
             this.pbNewGame.TabStop = false;
             this.pbNewGame.Click += new System.EventHandler(this.PbNewGame_Click);
             this.pbNewGame.MouseLeave += new System.EventHandler(this.PbNewGame_MouseLeave);
@@ -57,10 +63,8 @@ namespace BubbleTrouble
             this.pbShowControls.BackColor = System.Drawing.Color.Transparent;
             this.pbShowControls.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbShowControls.Image = global::BubbleTrouble.Properties.Resources.showControlsBtn2;
-            this.pbShowControls.Location = new System.Drawing.Point(116, 326);
+            resources.ApplyResources(this.pbShowControls, "pbShowControls");
             this.pbShowControls.Name = "pbShowControls";
-            this.pbShowControls.Size = new System.Drawing.Size(206, 54);
-            this.pbShowControls.TabIndex = 1;
             this.pbShowControls.TabStop = false;
             this.pbShowControls.Click += new System.EventHandler(this.PbShowControls_Click);
             this.pbShowControls.MouseLeave += new System.EventHandler(this.PbShowControls_MouseLeave);
@@ -72,34 +76,75 @@ namespace BubbleTrouble
             // 
             // TimeRemainingLevel
             // 
-            this.TimeRemainingLevel.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.TimeRemainingLevel, "TimeRemainingLevel");
             this.TimeRemainingLevel.Name = "TimeRemainingLevel";
-            this.TimeRemainingLevel.Size = new System.Drawing.Size(823, 26);
-            this.TimeRemainingLevel.TabIndex = 2;
+            // 
+            // pbHelp
+            // 
+            this.pbHelp.BackColor = System.Drawing.Color.Transparent;
+            this.pbHelp.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.pbHelp, "pbHelp");
+            this.pbHelp.Image = global::BubbleTrouble.Properties.Resources.questionImg;
+            this.pbHelp.Name = "pbHelp";
+            this.pbHelp.TabStop = false;
+            this.pbHelp.Click += new System.EventHandler(this.PbHelp_Click);
+            // 
+            // pbScore
+            // 
+            this.pbScore.BackColor = System.Drawing.Color.Transparent;
+            this.pbScore.Image = global::BubbleTrouble.Properties.Resources.score;
+            resources.ApplyResources(this.pbScore, "pbScore");
+            this.pbScore.Name = "pbScore";
+            this.pbScore.TabStop = false;
+            // 
+            // lblScore
+            // 
+            resources.ApplyResources(this.lblScore, "lblScore");
+            this.lblScore.BackColor = System.Drawing.Color.Transparent;
+            this.lblScore.Name = "lblScore";
+            // 
+            // pbLevel
+            // 
+            this.pbLevel.BackColor = System.Drawing.Color.Transparent;
+            this.pbLevel.Image = global::BubbleTrouble.Properties.Resources.lvl;
+            resources.ApplyResources(this.pbLevel, "pbLevel");
+            this.pbLevel.Name = "pbLevel";
+            this.pbLevel.TabStop = false;
+            // 
+            // lblLevelNumber
+            // 
+            resources.ApplyResources(this.lblLevelNumber, "lblLevelNumber");
+            this.lblLevelNumber.BackColor = System.Drawing.Color.Transparent;
+            this.lblLevelNumber.Name = "lblLevelNumber";
             // 
             // BubbleTrouble
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(824, 580);
+            this.Controls.Add(this.lblLevelNumber);
+            this.Controls.Add(this.pbLevel);
+            this.Controls.Add(this.lblScore);
+            this.Controls.Add(this.pbScore);
+            this.Controls.Add(this.pbHelp);
             this.Controls.Add(this.TimeRemainingLevel);
             this.Controls.Add(this.pbShowControls);
             this.Controls.Add(this.pbNewGame);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "BubbleTrouble";
-            this.Text = "Bubble Trouble";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BubbleTrouble_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.BubbleTrouble_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BubbleTrouble_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BubbleTrouble_KeyUp);
             this.Resize += new System.EventHandler(this.BubbleTrouble_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pbNewGame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbShowControls)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScore)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLevel)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -109,6 +154,11 @@ namespace BubbleTrouble
         private System.Windows.Forms.PictureBox pbShowControls;
         private System.Windows.Forms.Timer BallTimer;
         private System.Windows.Forms.ProgressBar TimeRemainingLevel;
+        private System.Windows.Forms.PictureBox pbHelp;
+        private System.Windows.Forms.PictureBox pbScore;
+        private System.Windows.Forms.Label lblScore;
+        private System.Windows.Forms.PictureBox pbLevel;
+        private System.Windows.Forms.Label lblLevelNumber;
     }
 }
 

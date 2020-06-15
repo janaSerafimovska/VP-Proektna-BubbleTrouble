@@ -121,22 +121,37 @@
   <data name="newGameBtn2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Pictures\newGameBtn2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="imagePlayerFinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Pictures\imagePlayerFinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="showControlsBtn2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Pictures\showControlsBtn2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Pictures\Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="levelImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\levelImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="showControlsBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Pictures\showControlsBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imagePlayerFinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Pictures\imagePlayerFinal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="score" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\score.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scoreImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scoreImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="newGameBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Pictures\newGameBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="questionImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\questionImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ImgLife" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImgLife.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lvl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lvl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

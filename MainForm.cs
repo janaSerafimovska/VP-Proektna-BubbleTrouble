@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Media;
+using System.Threading;
 using System.Windows.Forms;
 
 // This is the code for your desktop app.
@@ -15,22 +16,142 @@ namespace BubbleTrouble
         Game CurrentGame;
         int cnt = 0;
 
+        int WorkersDelay = 50;
+
+        Thread threadKeyLeft;
+        Thread threadKeyRight;
+        Thread threadKeySpace;
 
         Point initialCoordinatesVolume = new Point(877, 12);
         public BubbleTrouble()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+
+            threadKeyLeft = new Thread(KeyLeftWorker);
+            threadKeyRight = new Thread(KeyRightWorker);
+            threadKeySpace = new Thread(KeySpaceWorker);
+            threadKeyLeft.Start();
+            threadKeyRight.Start();
+            threadKeySpace.Start();
+
         }
+
+        [STAThread]
+        private void KeyLeftWorker()
+        {
+            try
+            {
+                while (true)
+                {
+                    Thread.Sleep(WorkersDelay);
+
+                    Invoke((Action)delegate
+                    {
+
+                        if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.Left))
+                        {
+                            if (CurrentGame != null)
+                            {
+                                if (cnt % 3 == 0) CurrentGame.MoveBalls();
+                                cnt++;
+                                if (cnt > 1000001) cnt = 0;
+                                CurrentGame.MovePlayerLeft();
+                                Invalidate(true);
+                            }
+                            else return;
+                        }
+                        Invalidate(true);
+
+                    });
+
+                }
+            }
+            catch { }
+            
+        }
+
+        [STAThread]
+        private void KeyRightWorker()
+        {
+            try
+            {
+                while (true)
+                {
+                    Thread.Sleep(WorkersDelay);
+
+
+                    Invoke((Action)delegate
+                    {
+
+                        if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.Right))
+                        {
+                            if (CurrentGame != null)
+                            {
+                                if (cnt % 3 == 0) CurrentGame.MoveBalls();
+                                cnt++;
+                                if (cnt > 1000001) cnt = 0;
+                                CurrentGame.MovePLayerRight();
+                                Invalidate(true);
+                            }
+                            else return;
+                        }
+                        Invalidate(true);
+
+                    });
+
+
+                }
+            }
+            catch { }
+           
+        }
+
+        [STAThread]
+        private void KeySpaceWorker()
+        {
+            try
+            {
+                while (true)
+                {
+
+                    Thread.Sleep(WorkersDelay);
+                    Invoke((Action)delegate
+                    {
+
+                        if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.Space))
+                        {
+                            if (CurrentGame != null)
+                            {
+                                if (cnt % 3 == 0) CurrentGame.MoveBalls();
+                                cnt++;
+                                if (cnt > 1000001) cnt = 0;
+                                CurrentGame.PlayerShoot();
+                                Invalidate(true);
+                            }
+                            else return;
+                        }
+
+                        Invalidate(true);
+                    });
+                }
+            }
+            catch { }
+  
+        }
+
+        
 
         private void PbNewGame_Click(object sender, EventArgs e)
         {
             CurrentGame = new Game(this.Width, this.Height);
             TimeRemainingLevel.Maximum = CurrentGame.Level.getTimeLimit();
             TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
+            Player.Instance.LivesRemaining = 3;
             Invalidate(true);
             BallTimer.Enabled = true;
             BallTimer.Start();
+          
         }
 
         private void BubbleTrouble_Resize(object sender, EventArgs e)
@@ -38,35 +159,45 @@ namespace BubbleTrouble
             /*Funkcija koja se povikuva sekoj pat koga kje ima promena na goleminata na 
               * prozorecot
             */
-
             WindowFormChanged();
         }
 
+        
         private void WindowFormChanged()
         {
+            try
+            { 
+                if (WindowState == FormWindowState.Maximized)
+                {
+                    int tmpWidth = (int)this.Size.Width - 7 * this.Size.Width / 8;
+                    int tmpHeight = (int)this.Size.Height - this.Size.Height / 2;
 
-            if (WindowState == FormWindowState.Maximized)
-            {
-                int tmpWidth = (int)this.Size.Width - 7 * this.Size.Width / 8;
-                int tmpHeight = (int)this.Size.Height - this.Size.Height / 2;
-                pbNewGame.Location = new Point(tmpWidth, tmpHeight);
-                pbNewGame.Size = new Size(320, 140);
-                pbShowControls.Location = new Point(tmpWidth, tmpHeight + 150);
-                pbShowControls.Size = new Size(320, 140);
-                TimeRemainingLevel.Size = new Size(this.Width - 70, 20);
-                TimeRemainingLevel.BackColor = Color.Orange;
-                TimeRemainingLevel.Location = new Point(70, 0);
+                    pbNewGame.Location = new Point(tmpWidth, tmpHeight);
+                    pbNewGame.Size = new Size(320, 140);
+                    pbShowControls.Location = new Point(tmpWidth, tmpHeight + 150);
+                    pbShowControls.Size = new Size(320, 140);
+                    pbHelp.Location = new Point(20, this.Height - 100);
+                    pbHelp.Size = new Size(60, 60);
+                    pbScore.Location = new Point(-40, 20);
+                    pbScore.Size = new Size(200, 70);
+                    lblScore.Location = new Point(200, 20);
+                    lblScore.Size = new Size(200, 70);
+                    pbLevel.Location = new Point(this.Width - 300, 20);
+                    pbLevel.Size = new Size(200, 70);
+                    lblLevelNumber.Location = new Point(this.Width - 200, 20);
+                    lblLevelNumber.Size = new Size(200, 70);
+                    
+                    TimeRemainingLevel.Size = new Size(this.Width - 70, 20);
+                    TimeRemainingLevel.BackColor = Color.Orange;
+                    TimeRemainingLevel.Location = new Point(70, 0);
+                    return;
+                }                
+                WindowState = FormWindowState.Maximized;
+                Invalidate(true);
 
-                return;
+                //pbVolume.Location = initialCoordinatesVolume;
             }
-            else if (WindowState == FormWindowState.Minimized)
-            {
-                return;
-            }
-
-            WindowState = FormWindowState.Maximized;
-            //pbVolume.Location = initialCoordinatesVolume;
-
+            catch { }
         }
 
         private void BubbleTrouble_Load(object sender, EventArgs e)
@@ -86,7 +217,12 @@ namespace BubbleTrouble
                 e.Graphics.Clear(Color.Gray);
                 pbNewGame.Visible = false;
                 pbShowControls.Visible = false;
+                pbHelp.Visible = false;
                 TimeRemainingLevel.Visible = true;
+                pbScore.Visible = true;
+                lblScore.Visible = true;
+                pbLevel.Visible = true;
+                lblLevelNumber.Visible = true;
                 CurrentGame.StartCurrentLevel(e.Graphics);
 
             }
@@ -94,6 +230,11 @@ namespace BubbleTrouble
             {
                 pbNewGame.Visible = true;
                 pbShowControls.Visible = true;
+                pbHelp.Visible = true;
+                pbScore.Visible = false;
+                lblScore.Visible = false;
+                pbLevel.Visible = false;
+                lblLevelNumber.Visible = false;
                 TimeRemainingLevel.Visible = false;
             }
         }
@@ -133,44 +274,6 @@ namespace BubbleTrouble
             pbNewGame.Image = global::BubbleTrouble.Properties.Resources.newGameBtn;
         }
 
-        private void BubbleTrouble_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (CurrentGame != null)
-            {
-                if (e.KeyCode == Keys.Left)
-                {
-                    CurrentGame.MovePlayerLeft();
-                }
-                if (e.KeyCode == Keys.Right)
-                {
-                    CurrentGame.MovePLayerRight();
-                }
-
-                if (cnt % 3 == 0) CurrentGame.MoveBalls();
-                cnt++;
-                if (cnt > 1000001) cnt = 0;
-                Invalidate(true);
-            }
-
-        }
-
-        private void BubbleTrouble_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (CurrentGame != null)
-            {
-                if (e.KeyCode == Keys.Space)
-                {
-                    Player.Instance.Shoot();
-                }
-                if (e.KeyCode == Keys.Escape)
-                {
-                    CurrentGame = null;
-                }
-
-                Invalidate(true);
-            }
-        }
-
         private void BallTimer_Tick(object sender, EventArgs e)
         {
             if (CurrentGame != null)
@@ -190,7 +293,8 @@ namespace BubbleTrouble
                     //vo ovj sluchaj vrati se nazad :)
 
                     //MessageBox.Show("LEVEL COMLETE"); // OVa nema vaka da stoi
-                    if(CurrentGame.Level.GetLevel() == 2){
+                    if (CurrentGame.Level.GetLevel() == 2)
+                    {
                         CurrentGame = null;
                     }
                     if (CurrentGame != null)
@@ -198,7 +302,7 @@ namespace BubbleTrouble
                         CurrentGame.ChangeLevel();
                         TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
                     }
-                    
+
                 }
                 else
                 {
@@ -219,6 +323,16 @@ namespace BubbleTrouble
 
                 Invalidate(true);
             }
+        }
+
+        private void PbHelp_Click(object sender, EventArgs e)
+        {
+            ShowHelp newForm = new ShowHelp();
+            if(newForm.ShowDialog()==DialogResult.Cancel)
+            {
+                newForm.Close();
+            }
+           
         }
     }
 }

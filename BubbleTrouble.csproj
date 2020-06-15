@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,6 +44,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
@@ -69,6 +71,12 @@
     <Compile Include="ShowControls.Designer.cs">
       <DependentUpon>ShowControls.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShowHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowHelp.Designer.cs">
+      <DependentUpon>ShowHelp.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +92,9 @@
     </Compile>
     <EmbeddedResource Include="ShowControls.resx">
       <DependentUpon>ShowControls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowHelp.resx">
+      <DependentUpon>ShowHelp.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -124,6 +135,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImgLife.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\questionImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scoreImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\score.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\levelImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lvl.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

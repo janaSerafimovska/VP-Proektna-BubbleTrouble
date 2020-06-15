@@ -93,6 +93,26 @@ namespace BubbleTrouble.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap levelImg {
+            get {
+                object obj = ResourceManager.GetObject("levelImg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lvl {
+            get {
+                object obj = ResourceManager.GetObject("lvl", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap newGameBtn {
             get {
                 object obj = ResourceManager.GetObject("newGameBtn", resourceCulture);
@@ -106,6 +126,36 @@ namespace BubbleTrouble.Properties {
         internal static System.Drawing.Bitmap newGameBtn2 {
             get {
                 object obj = ResourceManager.GetObject("newGameBtn2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap questionImg {
+            get {
+                object obj = ResourceManager.GetObject("questionImg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap score {
+            get {
+                object obj = ResourceManager.GetObject("score", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scoreImg {
+            get {
+                object obj = ResourceManager.GetObject("scoreImg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

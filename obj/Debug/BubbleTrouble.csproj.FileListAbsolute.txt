@@ -41,3 +41,4 @@ C:\Users\Aleksandar\Source\Repos\janaSerafimovska\VP-Proektna-BubbleTrouble\obj\
 C:\Users\Aleksandar\Source\Repos\janaSerafimovska\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.csproj.CoreCompileInputs.cache
 C:\Users\Aleksandar\Source\Repos\janaSerafimovska\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.exe
 C:\Users\Aleksandar\Source\Repos\janaSerafimovska\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.pdb
+C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.ShowHelp.resources
