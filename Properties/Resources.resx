@@ -154,4 +154,10 @@
   <data name="lvl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lvl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="playerRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playerRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="volumeOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\volumeOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

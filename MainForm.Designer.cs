@@ -39,6 +39,8 @@ namespace BubbleTrouble
             this.lblScore = new System.Windows.Forms.Label();
             this.pbLevel = new System.Windows.Forms.PictureBox();
             this.lblLevelNumber = new System.Windows.Forms.Label();
+            this.ReadyTimer = new System.Windows.Forms.Timer(this.components);
+            this.lblCoundown = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbNewGame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbShowControls)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
@@ -117,10 +119,22 @@ namespace BubbleTrouble
             this.lblLevelNumber.BackColor = System.Drawing.Color.Transparent;
             this.lblLevelNumber.Name = "lblLevelNumber";
             // 
+            // ReadyTimer
+            // 
+            this.ReadyTimer.Interval = 1000;
+            this.ReadyTimer.Tick += new System.EventHandler(this.ReadyTimer_Tick);
+            // 
+            // lblCoundown
+            // 
+            resources.ApplyResources(this.lblCoundown, "lblCoundown");
+            this.lblCoundown.BackColor = System.Drawing.Color.Transparent;
+            this.lblCoundown.Name = "lblCoundown";
+            // 
             // BubbleTrouble
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblCoundown);
             this.Controls.Add(this.lblLevelNumber);
             this.Controls.Add(this.pbLevel);
             this.Controls.Add(this.lblScore);
@@ -159,6 +173,8 @@ namespace BubbleTrouble
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.PictureBox pbLevel;
         private System.Windows.Forms.Label lblLevelNumber;
+        private System.Windows.Forms.Timer ReadyTimer;
+        private System.Windows.Forms.Label lblCoundown;
     }
 }
 

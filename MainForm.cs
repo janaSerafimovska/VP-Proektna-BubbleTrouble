@@ -14,7 +14,8 @@ namespace BubbleTrouble
     {
         SoundPlayer player;
         Game CurrentGame;
-        int cnt = 0;
+        int cnt = 0, countdown = 3;
+        bool activated = false;
 
         int WorkersDelay = 50;
 
@@ -45,7 +46,6 @@ namespace BubbleTrouble
                 while (true)
                 {
                     Thread.Sleep(WorkersDelay);
-
                     Invoke((Action)delegate
                     {
 
@@ -68,7 +68,7 @@ namespace BubbleTrouble
                 }
             }
             catch { }
-            
+
         }
 
         [STAThread]
@@ -78,9 +78,8 @@ namespace BubbleTrouble
             {
                 while (true)
                 {
+
                     Thread.Sleep(WorkersDelay);
-
-
                     Invoke((Action)delegate
                     {
 
@@ -88,6 +87,7 @@ namespace BubbleTrouble
                         {
                             if (CurrentGame != null)
                             {
+                                //JANA SLIKI DODADI ZA DA SE MENJA CHOVECHETO
                                 if (cnt % 3 == 0) CurrentGame.MoveBalls();
                                 cnt++;
                                 if (cnt > 1000001) cnt = 0;
@@ -100,11 +100,10 @@ namespace BubbleTrouble
 
                     });
 
-
                 }
             }
             catch { }
-           
+
         }
 
         [STAThread]
@@ -114,8 +113,8 @@ namespace BubbleTrouble
             {
                 while (true)
                 {
-
                     Thread.Sleep(WorkersDelay);
+
                     Invoke((Action)delegate
                     {
 
@@ -134,13 +133,14 @@ namespace BubbleTrouble
 
                         Invalidate(true);
                     });
+
                 }
             }
             catch { }
-  
+
         }
 
-        
+
 
         private void PbNewGame_Click(object sender, EventArgs e)
         {
@@ -151,7 +151,12 @@ namespace BubbleTrouble
             Invalidate(true);
             BallTimer.Enabled = true;
             BallTimer.Start();
-          
+            ReadyTimer.Enabled = true;
+            ReadyTimer.Start();
+            lblCoundown.Text = "READY!\n" + countdown.ToString();
+            lblCoundown.Visible = true;
+            activated = true;
+            lblLevelNumber.Text = "1"; // JAKOV NAPRAVI DA NE SE PRAI VAKA OVA
         }
 
         private void BubbleTrouble_Resize(object sender, EventArgs e)
@@ -162,11 +167,11 @@ namespace BubbleTrouble
             WindowFormChanged();
         }
 
-        
+
         private void WindowFormChanged()
         {
             try
-            { 
+            {
                 if (WindowState == FormWindowState.Maximized)
                 {
                     int tmpWidth = (int)this.Size.Width - 7 * this.Size.Width / 8;
@@ -184,14 +189,14 @@ namespace BubbleTrouble
                     lblScore.Size = new Size(200, 70);
                     pbLevel.Location = new Point(this.Width - 300, 20);
                     pbLevel.Size = new Size(200, 70);
-                    lblLevelNumber.Location = new Point(this.Width - 200, 20);
+                    lblLevelNumber.Location = new Point(this.Width - 100, 40);
                     lblLevelNumber.Size = new Size(200, 70);
-                    
+                    lblCoundown.Location = new Point(3*this.Width / 7, this.Height / 2);
                     TimeRemainingLevel.Size = new Size(this.Width - 70, 20);
                     TimeRemainingLevel.BackColor = Color.Orange;
                     TimeRemainingLevel.Location = new Point(70, 0);
                     return;
-                }                
+                }
                 WindowState = FormWindowState.Maximized;
                 Invalidate(true);
 
@@ -223,6 +228,7 @@ namespace BubbleTrouble
                 lblScore.Visible = true;
                 pbLevel.Visible = true;
                 lblLevelNumber.Visible = true;
+                lblCoundown.Visible = true;
                 CurrentGame.StartCurrentLevel(e.Graphics);
 
             }
@@ -236,6 +242,7 @@ namespace BubbleTrouble
                 pbLevel.Visible = false;
                 lblLevelNumber.Visible = false;
                 TimeRemainingLevel.Visible = false;
+                lblCoundown.Visible = false;
             }
         }
 
@@ -278,61 +285,152 @@ namespace BubbleTrouble
         {
             if (CurrentGame != null)
             {
-                CurrentGame.MoveBalls();
-                if (TimeRemainingLevel.Value - 1 < 0 && CurrentGame != null && CurrentGame.Level.Balls.Count != 0)
+                if (!activated)
                 {
-                    Player.Instance.LivesRemaining--;
-                    CurrentGame.ResetLevel();
-                    TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
-                    //plus da se odzeme zhivot
-
-                }
-                else if (TimeRemainingLevel.Value - 1 >= 0 && CurrentGame.Level.Balls.Count == 0)
-                {
-                    //go to next level
-                    //vo ovj sluchaj vrati se nazad :)
-
-                    //MessageBox.Show("LEVEL COMLETE"); // OVa nema vaka da stoi
-                    if (CurrentGame.Level.GetLevel() == 2)
+                    try
                     {
-                        CurrentGame = null;
+                        threadKeySpace.Resume();
+                        threadKeyLeft.Resume();
+                        threadKeyRight.Resume();
                     }
-                    if (CurrentGame != null)
+                    catch { }
+                    
+                    CurrentGame.MoveBalls();
+                    if (TimeRemainingLevel.Value - 1 < 0 && CurrentGame != null && CurrentGame.Level.Balls.Count != 0)
                     {
-                        CurrentGame.ChangeLevel();
-                        TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
+                        Player.Instance.LivesRemaining--;
+                        if (Player.Instance.LivesRemaining > 0)
+                        {
+                            lblCoundown.Text = "TIMES UP!\n";
+                            countdown = 5;
+                            lblCoundown.Visible = true;
+                            activated = true;
+                            CurrentGame.ResetLevel();
+                            TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
+                        }
+                        else
+                        {
+                            lblCoundown.Text = "GAME OVER";
+                            lblCoundown.Visible = true;
+                            activated = true;
+                            countdown = 2;
+                        }
+
+                    }
+                    else if (TimeRemainingLevel.Value - 1 >= 0 && CurrentGame.Level.Balls.Count == 0)
+                    {
+                        //go to next level
+
+                        if (CurrentGame.Level.GetLevel() == 2)
+                        {
+                            lblCoundown.Text = "CONGRADULATIONS!";
+                            lblCoundown.Location = new Point(2 * this.Width / 7, this.Height / 2);
+                            lblCoundown.Visible = true;
+                            activated = true;
+                            countdown = 2;
+                            //nejke back to main manu fix it ??
+                        }
+                        if (CurrentGame != null)
+                        {
+                            CurrentGame.ChangeLevel();
+                            //JAKOV NAPRAVI DA SE MENJA KOJ BROJ NA NIVO E
+                            activated = true;
+                            lblCoundown.Visible = true;
+                            countdown = 4;
+                            TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
+                        }
+
+                    }
+                    else
+                    {
+                        TimeRemainingLevel.Value -= 1;
                     }
 
+                    if (CurrentGame != null && CurrentGame.Level != null && Player.Instance.isHit(CurrentGame.Level.Balls, Width, Height) && TimeRemainingLevel.Value > 0)
+                    {
+                        Player.Instance.LivesRemaining--;
+
+                        if (Player.Instance.LivesRemaining > 0)
+                        {
+                            CurrentGame.ResetLevel();
+                            activated = true;
+                            lblCoundown.Visible = true;
+                            countdown = 4;
+                            TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
+                        }
+                        else
+                        {
+                            lblCoundown.Text = "GAME OVER";
+                            TimeRemainingLevel.Value = 0;
+                            lblCoundown.Visible = true;
+                            activated = true;
+                            countdown = 2;
+                        }
+                    }
+
+                    Invalidate(true);
                 }
                 else
                 {
-                    TimeRemainingLevel.Value -= 1;
+                    threadKeyRight.Suspend();
+                    threadKeyLeft.Suspend();
+                    threadKeySpace.Suspend();
                 }
-
-                if (CurrentGame != null && CurrentGame.Level != null && Player.Instance.isHit(CurrentGame.Level.Balls, Width, Height) && TimeRemainingLevel.Value > 0)
-                {
-                    Player.Instance.LivesRemaining--;
-
-                    if (Player.Instance.LivesRemaining > 0)
-                    {
-                        CurrentGame.ResetLevel();
-                        TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
-                    }
-                    else CurrentGame = null;
-                }
-
-                Invalidate(true);
             }
         }
 
         private void PbHelp_Click(object sender, EventArgs e)
         {
             ShowHelp newForm = new ShowHelp();
-            if(newForm.ShowDialog()==DialogResult.Cancel)
+            if (newForm.ShowDialog() == DialogResult.Cancel)
             {
                 newForm.Close();
             }
-           
+
+        }
+
+        public void LevelChange()
+        {
+            if (CurrentGame != null)
+            {
+                if (CurrentGame.Level != null)
+                {
+
+                }
+            }
+        }
+
+        private void ReadyTimer_Tick(object sender, EventArgs e)
+        {
+            if (activated)
+            {
+                if (countdown - 1 > 0 && countdown <= 4 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Equals("CONGRADULATIONS!")))
+                {
+                    countdown -= 1;
+                    lblCoundown.Text = "READY!\n";
+                    lblCoundown.Text += countdown.ToString();
+                }
+                else if (countdown - 1 == 0 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Equals("CONGRADULATIONS!")))
+                {
+                    lblCoundown.Text = "";
+                    lblCoundown.Visible = false;
+                    activated = false;
+                    Invalidate(true);
+                }
+                else if (lblCoundown.Text == "GAME OVER" || lblCoundown.Text == "CONGRADULATIONS!")
+                {
+                    countdown -= 1;
+                    if (countdown == 0)
+                    {
+                        activated = false;
+                        CurrentGame = null;
+                    }
+                }
+
+            }
+            else
+                return;
+
         }
     }
 }

@@ -133,6 +133,16 @@ namespace BubbleTrouble.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap playerRight {
+            get {
+                object obj = ResourceManager.GetObject("playerRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap questionImg {
             get {
                 object obj = ResourceManager.GetObject("questionImg", resourceCulture);
@@ -176,6 +186,16 @@ namespace BubbleTrouble.Properties {
         internal static System.Drawing.Bitmap showControlsBtn2 {
             get {
                 object obj = ResourceManager.GetObject("showControlsBtn2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap volumeOn {
+            get {
+                object obj = ResourceManager.GetObject("volumeOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

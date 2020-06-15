@@ -142,7 +142,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pbNewGame.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="pbShowControls.Location" type="System.Drawing.Point, System.Drawing">
     <value>90, 293</value>
@@ -166,7 +166,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pbShowControls.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <metadata name="BallTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -193,7 +193,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;TimeRemainingLevel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="pbHelp.ErrorImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -220,7 +220,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pbHelp.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="pbScore.Location" type="System.Drawing.Point, System.Drawing">
     <value>370, 32</value>
@@ -241,7 +241,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pbScore.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="lblScore.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -265,7 +265,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblScore.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="pbLevel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -289,19 +289,25 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pbLevel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="lblLevelNumber.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lblLevelNumber.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MAXIMO, 20pt, style=Bold</value>
   </data>
   <data name="lblLevelNumber.Location" type="System.Drawing.Point, System.Drawing">
     <value>674, 137</value>
   </data>
   <data name="lblLevelNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 18</value>
+    <value>0, 46</value>
   </data>
   <data name="lblLevelNumber.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
+  </data>
+  <data name="lblLevelNumber.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;lblLevelNumber.Name" xml:space="preserve">
     <value>lblLevelNumber</value>
@@ -313,6 +319,39 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLevelNumber.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="ReadyTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>154, 17</value>
+  </metadata>
+  <data name="lblCoundown.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCoundown.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MAXIMO, 40pt, style=Bold</value>
+  </data>
+  <data name="lblCoundown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 215</value>
+  </data>
+  <data name="lblCoundown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 93</value>
+  </data>
+  <data name="lblCoundown.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="lblCoundown.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lblCoundown.Name" xml:space="preserve">
+    <value>lblCoundown</value>
+  </data>
+  <data name="&gt;&gt;lblCoundown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCoundown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblCoundown.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -3853,6 +3892,12 @@
     <value>BallTimer</value>
   </data>
   <data name="&gt;&gt;BallTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ReadyTimer.Name" xml:space="preserve">
+    <value>ReadyTimer</value>
+  </data>
+  <data name="&gt;&gt;ReadyTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

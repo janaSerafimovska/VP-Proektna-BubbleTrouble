@@ -151,5 +151,11 @@
   <ItemGroup>
     <None Include="Resources\lvl.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\volumeOn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\playerRight.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
