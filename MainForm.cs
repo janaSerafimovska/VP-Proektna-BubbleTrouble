@@ -188,17 +188,24 @@ namespace BubbleTrouble
                 {
                     //go to next level
                     //vo ovj sluchaj vrati se nazad :)
-                    
+
                     //MessageBox.Show("LEVEL COMLETE"); // OVa nema vaka da stoi
-                    CurrentGame.ChangeLevel();
-                    TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
+                    if(CurrentGame.Level.GetLevel() == 2){
+                        CurrentGame = null;
+                    }
+                    if (CurrentGame != null)
+                    {
+                        CurrentGame.ChangeLevel();
+                        TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
+                    }
+                    
                 }
                 else
                 {
                     TimeRemainingLevel.Value -= 1;
                 }
 
-                if (Player.Instance.isHit(CurrentGame.Level.Balls, Width, Height) && TimeRemainingLevel.Value > 0)
+                if (CurrentGame != null && CurrentGame.Level != null && Player.Instance.isHit(CurrentGame.Level.Balls, Width, Height) && TimeRemainingLevel.Value > 0)
                 {
                     Player.Instance.LivesRemaining--;
 
