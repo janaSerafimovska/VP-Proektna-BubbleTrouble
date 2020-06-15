@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace BubbleTrouble
 {
@@ -64,8 +66,26 @@ namespace BubbleTrouble
             CurrentPosition = StartingPosition;
         }
 
-        public bool isHit(Ball ball)
+        public bool isHit(List <Ball> Balls, int Width, int Height)
         {
+            foreach(Ball ball in Balls)
+            {
+                if (ball.BottomBound() > Height - 100)
+                {
+                    if ((Math.Abs(ball.GetCenter().X - (CurrentPosition.X + 23)) <= 23 + ball.GetRadius()) ||
+                        ball.LeftBound() == CurrentPosition.X + 46 || 
+                        ball.RightBound() == CurrentPosition.X)
+                    {
+                        return true;
+                    }
+                }
+                if (ball.BottomBound() >= Height - 100 && ball.GetCenter().X >= CurrentPosition.X && ball.GetCenter().X <= CurrentPosition.X + 46 )
+                {
+                    return true;
+                }
+                
+            }
+
             return false;
         }
 
@@ -79,14 +99,7 @@ namespace BubbleTrouble
                 Shoot();
             }
             g.DrawImage(PlayerImage, CurrentPosition.X, CurrentPosition.Y - 100);
-            for (int i = 0; i < LivesRemaining; i++)
-            {
-                if (i == 0)
-                    g.DrawImage(PlayerLife, i, 0);
-                else
-                    g.DrawImage(PlayerLife, i * 20, 0);
-            }
-
+            for (int i = 0; i < LivesRemaining; i++) g.DrawImage(PlayerLife, i * 20, 0);
         }
 
         public void Move(int dx, int dy)

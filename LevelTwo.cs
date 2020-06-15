@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BubbleTrouble
 {
-
-    //Klasa koja e izvedena od klasata Level i go opisuva prvoto nivo.
-    public class LevelOne : Level
+    public class LevelTwo : Level
     {
-
-
-        public LevelOne(Point StartingPositions, int Width, int Height) : base(1, StartingPositions, Width, Height)
+        public LevelTwo(Point StartingPositions, int Width, int Height) : base(2, StartingPositions, Width, Height)
         {
             GenerateBalls();
             GenerateObstacles();
@@ -30,18 +30,20 @@ namespace BubbleTrouble
 
         public override void GenerateBalls()
         {
-            Ball ball = new GreenBall(30, new Point(150, 50), Color.SeaGreen, Width, Height);
+            Ball ball = new GreenBall(30, new Point(150, 300), Color.SeaGreen, Width, Height);
             AddBall(ball);
-            ball = new GreenBall(30, new Point(50, 200), Color.SeaGreen, Width, Height);
+            ball = new GreenBall(30, new Point(600, 200), Color.SeaGreen, Width, Height);
+            AddBall(ball);
+            ball = new BlueBall(20, new Point(1000, 400), Color.Blue, Width, Height);
             AddBall(ball);
         }
 
         //Metod koj generira prepreki za dadenoto nivo.
         public override void GenerateObstacles()
         {
-            //No obstacles in lvl 1.
-           // Obstacle obstacle = new Obstacle(Color.Yellow, new Point(300, 200), new Point(600, 200), new Point(600, 600), new Point(300, 600));
-           // AddObstacle(obstacle);
+            //Only 1 obstacle in lvl 2.
+            Obstacle obstacle = new Obstacle(Color.Yellow, new Point(300, 200), new Point(600, 200), new Point(600, 600), new Point(300, 600));
+            AddObstacle(obstacle);
         }
 
         //Metod koj vrakja na koe nivo sme momentalno.

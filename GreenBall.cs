@@ -14,7 +14,7 @@ namespace BubbleTrouble
         public override List<Ball> SplitBall(Point p)
         {
             List<Ball> NewBalls = new List<Ball>();
-            Ball one = new BlueBall(20, new Point(p.X + 20, p.Y - 10), Color.LightBlue, this.Width, this.Height);
+            Ball one = new BlueBall(20, new Point(p.X + 20, p.Y - 10), Color.Blue, this.Width, this.Height);
             one.InvertDirection();
             Ball two = new BlueBall(20, new Point(p.X + 20, p.Y - 10), Color.Blue,this.Width, this.Height);
             NewBalls.Add(one);

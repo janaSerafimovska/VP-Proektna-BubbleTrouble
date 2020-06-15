@@ -51,6 +51,7 @@
     <Compile Include="GreenBall.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelOne.cs" />
+    <Compile Include="LevelTwo.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

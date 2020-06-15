@@ -10,9 +10,20 @@ namespace BubbleTrouble
 
         public Game(int Width, int Height)
         {
-            Level = new LevelOne(1, new Point(Width / 2, Height - 20), Width, Height);
+            Level = new LevelOne(new Point(Width / 2, Height - 20), Width, Height);
             this.Width = Width;
             this.Height = Height;
+        }
+
+        public void ResetLevel()
+        {
+            if (Level.GetLevel() == 1) Level = new LevelOne(new Point(Width / 2, Height - 20), Width, Height);
+            if (Level.GetLevel() == 2) Level = new LevelTwo(new Point(Width / 3, Height - 20), Width, Height);
+        }
+
+        public void ChangeLevel()
+        {
+            if (Level.GetLevel() == 1) Level = new LevelTwo(new Point(Width / 3, Height - 20), Width, Height);
         }
 
         public void StartCurrentLevel(Graphics g)
@@ -21,7 +32,7 @@ namespace BubbleTrouble
         }
         
         public void MovePlayerLeft()
-        {
+        { 
             if (Player.Instance.GetCurrentPosition().X - 20 > 0) Level.MovePlayer(-20, 0);
         }
 
