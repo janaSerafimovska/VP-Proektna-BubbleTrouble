@@ -23,8 +23,6 @@ namespace BubbleTrouble
             this.DoubleBuffered = true;
         }
 
-
-
         private void PbNewGame_Click(object sender, EventArgs e)
         {
             CurrentGame = new Game(this.Width, this.Height);
@@ -148,9 +146,9 @@ namespace BubbleTrouble
                     CurrentGame.MovePLayerRight();
                 }
 
-                if (cnt % 2 == 0) CurrentGame.MoveBalls();
+                if (cnt % 3 == 0) CurrentGame.MoveBalls();
                 cnt++;
-                if (cnt > 1000000) cnt = 0;
+                if (cnt > 1000001) cnt = 0;
                 Invalidate(true);
             }
 
@@ -162,7 +160,7 @@ namespace BubbleTrouble
             {
                 if (e.KeyCode == Keys.Space)
                 {
-                    Player.Instance.ChangeShootingStatus();
+                    Player.Instance.Shoot();
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -180,9 +178,9 @@ namespace BubbleTrouble
                 CurrentGame.MoveBalls();
                 if (TimeRemainingLevel.Value - 1 < 0 && CurrentGame != null && CurrentGame.Level.Balls.Count != 0)
                 {
-
-                    CurrentGame = null;
-                    MessageBox.Show("You Lost"); // ova nema vaka da stoi kolku dali funkcionnira
+                    Player.Instance.LivesRemaining--;
+                    CurrentGame.ResetLevel();
+                    TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
                     //plus da se odzeme zhivot
 
                 }
@@ -190,15 +188,27 @@ namespace BubbleTrouble
                 {
                     //go to next level
                     //vo ovj sluchaj vrati se nazad :)
-                    CurrentGame = null;
-                    MessageBox.Show("LEVEL COMLETE"); // OVa nema vaka da stoi
-
+                    
+                    //MessageBox.Show("LEVEL COMLETE"); // OVa nema vaka da stoi
+                    CurrentGame.ChangeLevel();
+                    TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
                 }
                 else
                 {
                     TimeRemainingLevel.Value -= 1;
                 }
 
+                if (Player.Instance.isHit(CurrentGame.Level.Balls, Width, Height) && TimeRemainingLevel.Value > 0)
+                {
+                    Player.Instance.LivesRemaining--;
+
+                    if (Player.Instance.LivesRemaining > 0)
+                    {
+                        CurrentGame.ResetLevel();
+                        TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
+                    }
+                    else CurrentGame = null;
+                }
 
                 Invalidate(true);
             }

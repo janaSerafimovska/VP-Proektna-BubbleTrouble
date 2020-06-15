@@ -9,7 +9,6 @@ namespace BubbleTrouble
 
     public abstract class Level
     {
-        public static Player Player = Player.Instance;
         private Point StartingPosition;
         protected int Width, Height;
         protected int[] YShootCoordinatesForGivenX;
@@ -28,7 +27,7 @@ namespace BubbleTrouble
             for (int i = 0; i <= Width; i++) YShootCoordinatesForGivenX[i] = 0;
             this.Width = Width;
             this.Height = Height;
-            this.TimeLimit = 200; //mozhe i da ne e hardkodirano
+            this.TimeLimit = 300; //mozhe i da ne e hardkodirano
 
         }
 
@@ -40,42 +39,51 @@ namespace BubbleTrouble
         {
             if (Player.Instance.GetCurrentPosition() == Point.Empty)
             {
-                Player.setStartPosition(StartingPosition);
+                Player.Instance.setStartPosition(StartingPosition);
             }
             RemoveShotAt();
-            Player.Draw(g);
+            Player.Instance.Draw(g);
             foreach (Ball ball in Balls) ball.Draw(g);
             foreach (Obstacle obstacle in Obstacles) obstacle.Draw(g);
         }
 
         public void MovePlayer(int dx, int dy)
         {
-            Player.Move(dx, dy);
+             Player.Instance.Move(dx, dy);
+            
         }
 
         public void PlayerShoot()
         {
-            Player.Instance.Shoot();
+             Player.Instance.Shoot();
+            
         }
 
         public void MoveBalls()
         {
-            foreach (Ball ball in Balls)
+            if (!Player.Instance.isHit(Balls, Width, Height))
             {
-                foreach (Obstacle obstacle in Obstacles)
-                    ball.ColideCheck(obstacle);
-                ball.Move();
+                foreach (Ball ball in Balls)
+                {
+                    foreach (Obstacle obstacle in Obstacles)
+                        ball.ColideCheck(obstacle);
+                    ball.Move();
+                }
+            }
+            else
+            {
+                //comunicate with game;
             }
         }
 
         public void RemoveShotAt()
         {
-            if (!Player.isShooting) return;
+            if (!Player.Instance.isShooting) return;
 
             for (int i = 0; i < Balls.Count; i++)
             {
-                if (Math.Abs(Balls[i].GetCenter().X - Player.GetCurrentPosition().X) <= Balls[i].GetRadius() &&
-                    Balls[i].BottomBound() > YShootCoordinatesForGivenX[Player.GetCurrentPosition().X + 23])
+                if (Math.Abs(Balls[i].GetCenter().X - (Player.Instance.GetCurrentPosition().X+23)) <= Balls[i].GetRadius() &&
+                    Balls[i].BottomBound() > YShootCoordinatesForGivenX[Player.Instance.GetCurrentPosition().X + 23])
                 {
                     List<Ball> newBalls=Balls[i].SplitBall(Balls[i].GetCenter()); // povikuva funkcija koja ke generira dve topcinja vo tockata kajsto bila pogodena topkata
                     Balls.RemoveAt(i);
@@ -88,13 +96,15 @@ namespace BubbleTrouble
             }
         }
 
+        public int GetLevel()
+        {
+            return LevelID;
+        }
 
         public abstract void GenerateObstacles();
         public abstract void GenerateBalls();
         public abstract void AddObstacle(Obstacle ToAdd);
         public abstract void AddBall(Ball ToAdd);
-        public abstract int GetLevel();
         public abstract void PreprocessShootingYs();
-
     }
 }
