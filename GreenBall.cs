@@ -9,14 +9,14 @@ namespace BubbleTrouble
 {
     class GreenBall:Ball
     {
-        public GreenBall(int Radius, Point Center, Color Color, int Width, int Height) : base(Radius, Center, Color, Width, Height) { }
+        public GreenBall( Point Center, int Width, int Height) : base(30, Center, Color.MediumSpringGreen, Width, Height) { }
 
         public override List<Ball> SplitBall(Point p)
         {
             List<Ball> NewBalls = new List<Ball>();
-            Ball one = new BlueBall(20, new Point(p.X + 20, p.Y - 10), Color.Blue, this.Width, this.Height);
+            Ball one = new BlueBall( new Point(p.X + 20, p.Y - 10), this.Width, this.Height);
             one.InvertDirection();
-            Ball two = new BlueBall(20, new Point(p.X + 20, p.Y - 10), Color.Blue,this.Width, this.Height);
+            Ball two = new BlueBall( new Point(p.X + 20, p.Y - 10), this.Width, this.Height);
             NewBalls.Add(one);
             NewBalls.Add(two);
             return NewBalls;

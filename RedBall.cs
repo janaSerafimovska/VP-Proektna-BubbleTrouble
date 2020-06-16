@@ -9,7 +9,7 @@ namespace BubbleTrouble
 {
     class RedBall:Ball
     {
-        public RedBall(int Radius, Point Center, Color Color, int Width, int Height) : base(Radius, Center, Color, Width, Height) { }
+        public RedBall(Point Center,int Width, int Height) : base(20, Center, Color.Red, Width, Height) { }
 
         public override List<Ball> SplitBall(Point p)
         {

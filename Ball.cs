@@ -20,8 +20,8 @@ namespace BubbleTrouble
         private Color Color { get; set; }
 
         //brzini na dvizenje na topkata po x i y oska
-        public int vx = 10;
-        public int vy = 10;
+        public int vx;
+        public int vy;
 
         public Ball(int Radius, Point Center, Color Color, int Width, int Height) //smenivme mesta na width i height
         {
@@ -32,6 +32,8 @@ namespace BubbleTrouble
             this.VerticalBound = Height - Radius; //isto i tuka
             this.Width = Width;
             this.Height = Height;
+            this.vx = 43 - Radius;
+            this.vy = 40 - Radius;
         }
 
         public Point GetCenter()

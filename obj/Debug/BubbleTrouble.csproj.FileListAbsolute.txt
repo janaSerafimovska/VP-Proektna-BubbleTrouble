@@ -42,3 +42,15 @@ C:\Users\Aleksandar\Source\Repos\janaSerafimovska\VP-Proektna-BubbleTrouble\obj\
 C:\Users\Aleksandar\Source\Repos\janaSerafimovska\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.exe
 C:\Users\Aleksandar\Source\Repos\janaSerafimovska\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.pdb
 C:\Users\User\Desktop\BubbleTrouble\obj\Debug\BubbleTrouble.ShowHelp.resources
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\bin\Debug\BubbleTrouble.exe.config
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\bin\Debug\BubbleTrouble.exe
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\bin\Debug\BubbleTrouble.pdb
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.csprojAssemblyReference.cache
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.BubbleTrouble.resources
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.Properties.Resources.resources
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.ShowControls.resources
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.ShowHelp.resources
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.csproj.GenerateResource.cache
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.csproj.CoreCompileInputs.cache
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.exe
+C:\Users\Aleksandra\Source\Repos\VP-Proektna-BubbleTrouble\obj\Debug\BubbleTrouble.pdb
