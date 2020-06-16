@@ -30,9 +30,9 @@ namespace BubbleTrouble
 
         public override void GenerateBalls()
         {
-            Ball ball = new GreenBall(30, new Point(150, 50), Color.SeaGreen, Width, Height);
+            Ball ball = new GreenBall( new Point(150, 50),  Width, Height);
             AddBall(ball);
-            ball = new GreenBall(30, new Point(50, 200), Color.SeaGreen, Width, Height);
+            ball = new GreenBall(new Point(50, 200),  Width, Height);
             AddBall(ball);
         }
 
