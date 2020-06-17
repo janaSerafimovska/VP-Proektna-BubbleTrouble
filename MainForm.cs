@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Media;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -17,28 +18,24 @@ namespace BubbleTrouble
         int cnt = 0, countdown = 3;
         bool activated = false;
 
-        int WorkersDelay = 50;
+        int WorkersDelay = 60;
 
         Thread threadKeyLeft;
         Thread threadKeyRight;
-        Thread threadKeySpace;
 
         Point initialCoordinatesVolume = new Point(877, 12);
         public BubbleTrouble()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
-
+            this.DoubleBuffered = true;           
             threadKeyLeft = new Thread(KeyLeftWorker);
             threadKeyRight = new Thread(KeyRightWorker);
-            threadKeySpace = new Thread(KeySpaceWorker);
+            this.StartPosition = FormStartPosition.CenterScreen;
             threadKeyLeft.Start();
             threadKeyRight.Start();
-            threadKeySpace.Start();
-
         }
 
-        [STAThread]
+        [MTAThread]
         private void KeyLeftWorker()
         {
             try
@@ -48,41 +45,34 @@ namespace BubbleTrouble
                     Thread.Sleep(WorkersDelay);
                     Invoke((Action)delegate
                     {
-
                         if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.Left))
                         {
                             if (CurrentGame != null)
                             {
-                                if (cnt % 3 == 0) CurrentGame.MoveBalls();
+                                if (cnt % 3 == 0) CurrentGame.MoveBalls(); 
                                 cnt++;
                                 if (cnt > 1000001) cnt = 0;
                                 CurrentGame.MovePlayerLeft();
-                                Invalidate(true);
                             }
-                            else return;
                         }
                         Invalidate(true);
-
                     });
-
                 }
             }
-            catch { }
+            catch {}
 
         }
 
-        [STAThread]
+        [MTAThread]
         private void KeyRightWorker()
         {
             try
             {
                 while (true)
                 {
-
                     Thread.Sleep(WorkersDelay);
                     Invoke((Action)delegate
                     {
-
                         if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.Right))
                         {
                             if (CurrentGame != null)
@@ -92,63 +82,24 @@ namespace BubbleTrouble
                                 cnt++;
                                 if (cnt > 1000001) cnt = 0;
                                 CurrentGame.MovePLayerRight();
-                                Invalidate(true);
                             }
-                            else return;
                         }
                         Invalidate(true);
 
                     });
-
                 }
             }
             catch { }
 
         }
-
-        [STAThread]
-        private void KeySpaceWorker()
-        {
-            try
-            {
-                while (true)
-                {
-                    Thread.Sleep(WorkersDelay);
-
-                    Invoke((Action)delegate
-                    {
-
-                        if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.Space))
-                        {
-                            if (CurrentGame != null)
-                            {
-                                if (cnt % 3 == 0) CurrentGame.MoveBalls();
-                                cnt++;
-                                if (cnt > 1000001) cnt = 0;
-                                CurrentGame.PlayerShoot();
-                                Invalidate(true);
-                            }
-                            else return;
-                        }
-
-                        Invalidate(true);
-                    });
-
-                }
-            }
-            catch { }
-
-        }
-
-
 
         private void PbNewGame_Click(object sender, EventArgs e)
         {
+            
             CurrentGame = new Game(this.Width, this.Height);
             TimeRemainingLevel.Maximum = CurrentGame.Level.getTimeLimit();
             TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
             Player.Instance.LivesRemaining = 3;
-            Invalidate(true);
             BallTimer.Enabled = true;
             BallTimer.Start();
             ReadyTimer.Enabled = true;
@@ -156,12 +107,13 @@ namespace BubbleTrouble
             lblCoundown.Text = "READY!\n" + countdown.ToString();
             lblCoundown.Visible = true;
             activated = true;
-            lblLevelNumber.Text = "1"; // JAKOV NAPRAVI DA NE SE PRAI VAKA OVA
+            lblLevelNumber.Text = "1";
+            Invalidate(true);
         }
 
         private void BubbleTrouble_Resize(object sender, EventArgs e)
         {
-            /*Funkcija koja se povikuva sekoj pat koga kje ima promena na goleminata na 
+            /*Funkcija koja se povikuva sekoj pat koga kje ima promena na goleminata na
               * prozorecot
             */
             WindowFormChanged();
@@ -281,20 +233,21 @@ namespace BubbleTrouble
             pbNewGame.Image = global::BubbleTrouble.Properties.Resources.newGameBtn;
         }
 
+        [Obsolete]
         private void BallTimer_Tick(object sender, EventArgs e)
         {
             if (CurrentGame != null)
             {
                 if (!activated)
                 {
-                    try
-                    {
-                        threadKeySpace.Resume();
-                        threadKeyLeft.Resume();
-                        threadKeyRight.Resume();
-                    }
-                    catch { }
-                    
+                    //try
+                    //{
+                    if ((threadKeyLeft.ThreadState & ThreadState.Suspended) != 0) threadKeyLeft.Resume();
+                    if ((threadKeyRight.ThreadState & ThreadState.Suspended) != 0) threadKeyRight.Resume();
+
+                    //}
+                    //catch {}
+                    lblScore.Text = String.Format("{0}", Player.Instance.GetScore());
                     CurrentGame.MoveBalls();
                     if (TimeRemainingLevel.Value - 1 < 0 && CurrentGame != null && CurrentGame.Level.Balls.Count != 0)
                     {
@@ -302,7 +255,7 @@ namespace BubbleTrouble
                         if (Player.Instance.LivesRemaining > 0)
                         {
                             lblCoundown.Text = "TIMES UP!\n";
-                            countdown = 5;
+                            countdown = 4;
                             lblCoundown.Visible = true;
                             activated = true;
                             CurrentGame.ResetLevel();
@@ -319,21 +272,19 @@ namespace BubbleTrouble
                     }
                     else if (TimeRemainingLevel.Value - 1 >= 0 && CurrentGame.Level.Balls.Count == 0)
                     {
-                        //go to next level
-
                         if (CurrentGame.Level.GetLevel() == 2)
                         {
-                            lblCoundown.Text = "CONGRADULATIONS!";
+                            lblCoundown.Text = "CONGRATULATIONS!";
                             lblCoundown.Location = new Point(2 * this.Width / 7, this.Height / 2);
                             lblCoundown.Visible = true;
                             activated = true;
                             countdown = 2;
-                            //nejke back to main manu fix it ??
+                            return;
                         }
                         if (CurrentGame != null)
                         {
                             CurrentGame.ChangeLevel();
-                            //JAKOV NAPRAVI DA SE MENJA KOJ BROJ NA NIVO E
+                            lblLevelNumber.Text = String.Format("{0}", CurrentGame.Level.LevelID);
                             activated = true;
                             lblCoundown.Visible = true;
                             countdown = 4;
@@ -372,9 +323,12 @@ namespace BubbleTrouble
                 }
                 else
                 {
-                    threadKeyRight.Suspend();
-                    threadKeyLeft.Suspend();
-                    threadKeySpace.Suspend();
+                    try
+                    {
+                        threadKeyRight.Suspend();
+                        threadKeyLeft.Suspend();
+                    }
+                    catch{}
                 }
             }
         }
@@ -389,13 +343,15 @@ namespace BubbleTrouble
 
         }
 
-        public void LevelChange()
+        private void BubbleTrouble_KeyUp(object sender, KeyEventArgs e)
         {
             if (CurrentGame != null)
             {
-                if (CurrentGame.Level != null)
+                if (e.KeyCode == Keys.Space)
                 {
-
+                    CurrentGame.PlayerShoot();
+                    Invalidate(true);
+                    lblScore.Text = String.Format("{0}", Player.Instance.GetScore());
                 }
             }
         }
@@ -404,32 +360,36 @@ namespace BubbleTrouble
         {
             if (activated)
             {
-                if (countdown - 1 > 0 && countdown <= 4 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Equals("CONGRADULATIONS!")))
+                if (countdown - 1 > 0 && countdown <= 4 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Equals("CONGRATULATIONS!") && !lblCoundown.Text.Equals("TIMES UP!")))
                 {
                     countdown -= 1;
                     lblCoundown.Text = "READY!\n";
                     lblCoundown.Text += countdown.ToString();
                 }
-                else if (countdown - 1 == 0 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Equals("CONGRADULATIONS!")))
+                else if (countdown - 1 == 0 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Equals("CONGRATULATIONS!")))
                 {
                     lblCoundown.Text = "";
                     lblCoundown.Visible = false;
                     activated = false;
                     Invalidate(true);
                 }
-                else if (lblCoundown.Text == "GAME OVER" || lblCoundown.Text == "CONGRADULATIONS!")
+                else if (lblCoundown.Text == "GAME OVER" || lblCoundown.Text == "CONGRATULATIONS!")
                 {
                     countdown -= 1;
                     if (countdown == 0)
                     {
-                        activated = false;
                         CurrentGame = null;
                     }
                 }
+                else if (lblCoundown.Text == "TIMES UP!")
+                {
+                    countdown -= 1;
+                }
+
+                Invalidate(true);
 
             }
-            else
-                return;
+            else return;
 
         }
     }

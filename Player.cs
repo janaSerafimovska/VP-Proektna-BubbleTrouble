@@ -16,6 +16,7 @@ namespace BubbleTrouble
         /* definiranje na promenliva koja kje oznachuva ushte kolku zhivoti
          * mu preostanuvaat na igrachot (inicijalno tie se setirani na 3)
          */
+        private long Score {get; set;}
         public int LivesRemaining { get; set; }
         public Bitmap PlayerImage { get; set; }
         public Bitmap PlayerLife { get; set; }
@@ -54,6 +55,18 @@ namespace BubbleTrouble
                 }
             }
 
+        }
+
+        public long GetScore()
+        {
+            return Score;
+        }
+
+        public void UpdateScore(Ball ball)
+        {
+            if (ball is GreenBall) Score += 1500;
+            else if (ball is BlueBall) Score += 3000;
+            else Score += 5000;
         }
 
         public Point GetCurrentPosition()

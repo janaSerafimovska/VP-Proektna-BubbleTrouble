@@ -86,6 +86,7 @@ namespace BubbleTrouble
                     Balls[i].BottomBound() > YShootCoordinatesForGivenX[Player.Instance.GetCurrentPosition().X + 23])
                 {
                     List<Ball> newBalls=Balls[i].SplitBall(Balls[i].GetCenter()); // povikuva funkcija koja ke generira dve topcinja vo tockata kajsto bila pogodena topkata
+                    Player.Instance.UpdateScore(Balls[i]);
                     Balls.RemoveAt(i);
                     if (newBalls.Count != 0)
                     {
