@@ -17,13 +17,13 @@ namespace BubbleTrouble
 
         public void ResetLevel()
         {
-            if (Level.GetLevel() == 1) Level = new LevelOne(new Point(Width / 2, Height - 20), Width, Height);
-            if (Level.GetLevel() == 2) Level = new LevelTwo(new Point(Width / 3, Height - 20), Width, Height);
+            if (Level.GetLevel() == 1) { Level = new LevelOne(new Point(Width / 2, Height - 20), Width, Height); Player.Instance.setStartPosition(Point.Empty); }
+            if (Level.GetLevel() == 2) { Level = new LevelTwo(new Point(Width / 3, Height - 20), Width, Height); Player.Instance.setStartPosition(Point.Empty); }
         }
 
         public void ChangeLevel()
         {
-            if (Level.GetLevel() == 1) Level = new LevelTwo(new Point(Width / 3, Height - 20), Width, Height);
+            if (Level.GetLevel() == 1) { Level = new LevelTwo(new Point(Width / 3, Height - 20), Width, Height); Player.Instance.setStartPosition(Point.Empty); }
         }
 
         public void StartCurrentLevel(Graphics g)
