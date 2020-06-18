@@ -148,6 +148,7 @@ namespace BubbleTrouble
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BubbleTrouble";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BubbleTrouble_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.BubbleTrouble_Paint);

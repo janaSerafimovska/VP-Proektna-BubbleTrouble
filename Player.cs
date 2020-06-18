@@ -68,7 +68,14 @@ namespace BubbleTrouble
             else if (ball is BlueBall) Score += 3000;
             else Score += 5000;
         }
-
+        public void ResetScore()
+        {
+            Score = 0;
+        }
+        public void ResetCurrentPosition()
+        {
+            CurrentPosition = Point.Empty;
+        }
         public Point GetCurrentPosition()
         {
             return CurrentPosition;
