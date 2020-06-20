@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BubbleTrouble
 {
+    //Klasa koja e izvedena od klasata Level i go opisuva vtoroto nivo.
     public class LevelTwo : Level
     {
         public LevelTwo(Point StartingPositions, int Width, int Height) : base(2, StartingPositions, Width, Height)
@@ -16,43 +17,25 @@ namespace BubbleTrouble
             PreprocessShootingYs();
             Player.Instance.SetShootEndingY(YShootCoordinatesForGivenX);
         }
-
-        //metod koj dodava prepreka vo listata od prepreki.
-        public override void AddObstacle(Obstacle ToAdd)
-        {
-            Obstacles.Add(ToAdd);
-        }
-
-        public override void AddBall(Ball ToAdd)
-        {
-            Balls.Add(ToAdd);
-        }
-
+        //Metod koj generira topcinja za dadenoto nivo
         public override void GenerateBalls()
         {
             Ball ball = new GreenBall(new Point(150, 300), Width, Height);
             AddBall(ball);
-            ball = new GreenBall( new Point(600, 200), Width, Height);
+            ball = new GreenBall( new Point(700, 200), Width, Height);
             AddBall(ball);
             ball = new BlueBall( new Point(1000, 400),  Width, Height);
             AddBall(ball);
         }
 
-        //Metod koj generira prepreki za dadenoto nivo.
+        //Metod koj generira prepreki za dadenoto nivo
         public override void GenerateObstacles()
         {
             //Only 1 obstacle in lvl 2.
-            Obstacle obstacle = new Obstacle(Color.Yellow, new Point(300, 200), new Point(600, 200), new Point(600, 600), new Point(300, 600));
+            Obstacle obstacle = new Obstacle(Color.DarkSlateGray, new Point(300, 200), new Point(600, 200), new Point(600, 600), new Point(300, 600));
             AddObstacle(obstacle);
         }
 
         //Metod koj vrakja na koe nivo sme momentalno.
-
-        public override void PreprocessShootingYs()
-        {
-            foreach (Obstacle obstacle in Obstacles)
-                for (int i = obstacle.BottomLeft.X; i <= obstacle.BottomRight.X; i++)
-                    YShootCoordinatesForGivenX[i] = Math.Max(YShootCoordinatesForGivenX[i], obstacle.BottomLeft.Y);
-        }
     }
 }

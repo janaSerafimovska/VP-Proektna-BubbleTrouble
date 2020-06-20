@@ -23,13 +23,13 @@ namespace BubbleTrouble
         public int vx;
         public int vy;
 
-        public Ball(int Radius, Point Center, Color Color, int Width, int Height) //smenivme mesta na width i height
+        public Ball(int Radius, Point Center, Color Color, int Width, int Height) 
         {
             this.Color = Color;
             this.Center = Center;
             this.Radius = Radius;
-            this.HorizontalBound = Width - Radius; // tuka odzemavme radius, za da ne iskoci topceto koga se dvizi
-            this.VerticalBound = Height - Radius; //isto i tuka
+            this.HorizontalBound = Width - Radius; 
+            this.VerticalBound = Height - Radius; 
             this.Width = Width;
             this.Height = Height;
             this.vx = 43 - Radius;
@@ -163,11 +163,6 @@ namespace BubbleTrouble
             }
 
             if (BottomBound() > VerticalBound) Center = new Point(Center.X, VerticalBound - Radius);
-
-            //druga rabota, bi sakal da sedneme SITE zaedno za da implementirame observer megju level i game za da ima notify koga ke treba da se smeni levelot..... 
-            //toa malce ke ni go naprai kasha kodot... ne bi bilo losho use sea da dzirneme dali moze malce poubavo da gi napiseme rabotite.
-
-            //ty :P
         }
         public abstract List<Ball> SplitBall(Point p);
     }

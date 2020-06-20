@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BubbleTrouble
 {
+    //Klasa koja e izvedena od klasata Level i go opisuva petoto nivo.
     public class LevelFive : Level
     {
         public LevelFive(Point StartingPositions, int Width, int Height) : base(5, StartingPositions, Width, Height)
@@ -17,17 +18,7 @@ namespace BubbleTrouble
             Player.Instance.SetShootEndingY(YShootCoordinatesForGivenX);
         }
 
-        //metod koj dodava prepreka vo listata od prepreki.
-        public override void AddObstacle(Obstacle ToAdd)
-        {
-            Obstacles.Add(ToAdd);
-        }
-
-        public override void AddBall(Ball ToAdd)
-        {
-            Balls.Add(ToAdd);
-        }
-
+        //Metod koj generira topcinja za dadenoto nivo
         public override void GenerateBalls()
         {
             Ball ball = new GreenBall(new Point(150, 150), Width, Height);
@@ -63,15 +54,6 @@ namespace BubbleTrouble
             AddObstacle(obstacle);
             obstacle = new Obstacle(Color.DarkSlateGray, new Point(950, 400), new Point(1100, 400), new Point(1100, 450), new Point(950, 450));
             AddObstacle(obstacle);
-        }
-
-        //Metod koj vrakja na koe nivo sme momentalno.
-
-        public override void PreprocessShootingYs()
-        {
-            foreach (Obstacle obstacle in Obstacles)
-                for (int i = obstacle.BottomLeft.X; i <= obstacle.BottomRight.X; i++)
-                    YShootCoordinatesForGivenX[i] = Math.Max(YShootCoordinatesForGivenX[i], obstacle.BottomLeft.Y);
         }
     }
 }

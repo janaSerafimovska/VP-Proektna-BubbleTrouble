@@ -22,6 +22,7 @@ namespace BubbleTrouble
             BottomRight = bottomRight;
         }
 
+        //metod koj pravi iscrtuvanje na preprekata
         public void Draw(Graphics canvas)
         {
             Brush brush = new SolidBrush(ObstacleColor);

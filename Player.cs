@@ -12,6 +12,7 @@ namespace BubbleTrouble
         private static Player instance = null;
         private static readonly object padlock = new object();
         private static Point CurrentPosition = Point.Empty;
+        private long CurrentLevelScore = 0;
 
         /* definiranje na promenliva koja kje oznachuva ushte kolku zhivoti
          * mu preostanuvaat na igrachot (inicijalno tie se setirani na 3)
@@ -34,11 +35,6 @@ namespace BubbleTrouble
         public void SetShootEndingY(int[] ToSet)
         {
             YShootCoordinatesForGivenX = ToSet;
-        }
-
-        public void ChangeShootingStatus()
-        {
-            isShooting = !isShooting;
         }
 
         public static Player Instance
@@ -64,10 +60,22 @@ namespace BubbleTrouble
 
         public void UpdateScore(Ball ball)
         {
-            if (ball is GreenBall) Score += 1500;
-            else if (ball is BlueBall) Score += 3000;
-            else Score += 5000;
+            if (ball is GreenBall) { Score += 1500; CurrentLevelScore += 1500; }
+            else if (ball is BlueBall) { Score += 3000; CurrentLevelScore += 3000; }
+            else { Score += 5000; CurrentLevelScore += 5000; }
         }
+
+        public void SubstractOnLostLife()
+        {
+            Score -= CurrentLevelScore;
+            CurrentLevelScore = 0;
+        }
+
+        public void ResetCurrLevelScore()
+        {
+            CurrentLevelScore = 0;
+        }
+
         public void ResetScore()
         {
             Score = 0;
@@ -81,31 +89,29 @@ namespace BubbleTrouble
             return CurrentPosition;
         }
 
-        public void setStartPosition(Point StartingPosition)
+        public void SetStartPosition(Point StartingPosition)
         {
             CurrentPosition = StartingPosition;
         }
 
-        public bool isHit(List <Ball> Balls, int Width, int Height)
+        public bool IsHit(List <Ball> Balls, int Width, int Height)
         {
-            foreach(Ball ball in Balls)
+            foreach (Ball ball in Balls)
             {
                 if (ball.BottomBound() > Height - 100)
                 {
                     if ((Math.Abs(ball.GetCenter().X - (CurrentPosition.X + 23)) <= 23 + ball.GetRadius()) ||
-                        ball.LeftBound() == CurrentPosition.X + 46 || 
+                        ball.LeftBound() == CurrentPosition.X + 46 ||
                         ball.RightBound() == CurrentPosition.X)
                     {
                         return true;
                     }
                 }
-                if (ball.BottomBound() >= Height - 100 && ball.GetCenter().X >= CurrentPosition.X && ball.GetCenter().X <= CurrentPosition.X + 46 )
+                if (ball.BottomBound() >= Height - 100 && ball.GetCenter().X >= CurrentPosition.X && ball.GetCenter().X <= CurrentPosition.X + 46)
                 {
                     return true;
                 }
-                
             }
-
             return false;
         }
 
@@ -129,8 +135,7 @@ namespace BubbleTrouble
 
         public void Shoot()
         {
-            ChangeShootingStatus();
+            isShooting = !isShooting;
         }
-
     }
 }

@@ -17,7 +17,7 @@ namespace BubbleTrouble
     {
         SoundPlayer player;
         Game CurrentGame;
-        int cnt = 0, countdown = 3;
+        int countdown = 3;
         bool activated = false;
 
         Point initialCoordinatesVolume = new Point(877, 12);
@@ -27,10 +27,8 @@ namespace BubbleTrouble
             this.DoubleBuffered = true;
         }
 
-     
         private void PbNewGame_Click(object sender, EventArgs e)
         {
-
             CurrentGame = new Game(this.Width, this.Height);
             Player.Instance.ResetScore();
             TimeRemainingLevel.Maximum = CurrentGame.Level.getTimeLimit();
@@ -44,7 +42,6 @@ namespace BubbleTrouble
             lblCoundown.Visible = true;
             activated = true;
             lblLevelNumber.Text = "1";
-
             Invalidate(true);
         }
 
@@ -89,7 +86,6 @@ namespace BubbleTrouble
                 {
                     return;
                 }
-
 
                 WindowState = FormWindowState.Maximized;
                 Invalidate(true);
@@ -194,6 +190,7 @@ namespace BubbleTrouble
                             lblCoundown.Visible = true;
                             activated = true;
                             CurrentGame.ResetLevel();
+                            Player.Instance.SubstractOnLostLife();
                             TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
                         }
                         else
@@ -207,7 +204,7 @@ namespace BubbleTrouble
                     }
                     else if (TimeRemainingLevel.Value - 1 >= 0 && CurrentGame.Level.Balls.Count == 0)
                     {
-                        if (CurrentGame.Level.GetLevel() == 2)
+                        if (CurrentGame.Level.GetLevel() == 5)
                         {
                             lblCoundown.Text = "CONGRATULATIONS!";
                             lblCoundown.Location = new Point(2 * this.Width / 7, this.Height / 2);
@@ -219,6 +216,7 @@ namespace BubbleTrouble
                         if (CurrentGame != null)
                         {
                             CurrentGame.ChangeLevel();
+                            Player.Instance.ResetCurrLevelScore();
                             lblLevelNumber.Text = String.Format("{0}", CurrentGame.Level.LevelID);
                             activated = true;
                             lblCoundown.Visible = true;
@@ -232,13 +230,14 @@ namespace BubbleTrouble
                         TimeRemainingLevel.Value -= 1;
                     }
 
-                    if (CurrentGame != null && CurrentGame.Level != null && Player.Instance.isHit(CurrentGame.Level.Balls, Width, Height) && TimeRemainingLevel.Value > 0)
+                    if (CurrentGame != null && CurrentGame.Level != null && Player.Instance.IsHit(CurrentGame.Level.Balls, Width, Height) && TimeRemainingLevel.Value > 0)
                     {
                         Player.Instance.LivesRemaining--;
 
                         if (Player.Instance.LivesRemaining > 0)
                         {
                             CurrentGame.ResetLevel();
+                            Player.Instance.SubstractOnLostLife();
                             activated = true;
                             lblCoundown.Visible = true;
                             countdown = 4;
@@ -266,7 +265,6 @@ namespace BubbleTrouble
             {
                 newForm.Close();
             }
-
         }
 
         private void BubbleTrouble_KeyUp(object sender, KeyEventArgs e)
@@ -321,7 +319,6 @@ namespace BubbleTrouble
                     lblCoundown.Text = "";
                     lblCoundown.Visible = false;
                     activated = false;
-                    Invalidate(true);
                 }
                 else if (lblCoundown.Text == "GAME OVER" || lblCoundown.Text == "CONGRATULATIONS!")
                 {
@@ -342,10 +339,7 @@ namespace BubbleTrouble
                 }
 
                 Invalidate(true);
-
             }
-            else return;
-
         }
     }
 }
