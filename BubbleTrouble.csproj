@@ -205,5 +205,8 @@
   <ItemGroup>
     <None Include="Resources\controls.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ShowControlsBack.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

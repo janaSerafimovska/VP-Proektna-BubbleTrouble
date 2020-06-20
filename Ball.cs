@@ -32,8 +32,8 @@ namespace BubbleTrouble
             this.VerticalBound = Height - Radius; 
             this.Width = Width;
             this.Height = Height;
-            this.vx = 43 - Radius;
-            this.vy = 40 - Radius;
+            this.vx = 10 - (Radius / 5);
+            this.vy = 10 - (Radius / 6);
         }
 
         public Point GetCenter()

@@ -74,6 +74,7 @@ namespace BubbleTrouble
             // 
             // BallTimer
             // 
+            this.BallTimer.Interval = 10;
             this.BallTimer.Tick += new System.EventHandler(this.BallTimer_Tick);
             // 
             // TimeRemainingLevel

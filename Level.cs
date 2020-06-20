@@ -27,7 +27,7 @@ namespace BubbleTrouble
             for (int i = 0; i <= Width; i++) YShootCoordinatesForGivenX[i] = 0;
             this.Width = Width;
             this.Height = Height;
-            this.TimeLimit = 300;
+            this.TimeLimit = 3000;
         }
 
         public int getTimeLimit()
