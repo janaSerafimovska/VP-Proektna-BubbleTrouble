@@ -41,11 +41,13 @@ namespace BubbleTrouble
             this.lblLevelNumber = new System.Windows.Forms.Label();
             this.ReadyTimer = new System.Windows.Forms.Timer(this.components);
             this.lblCoundown = new System.Windows.Forms.Label();
+            this.pbSound = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbNewGame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbShowControls)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbScore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSound)).BeginInit();
             this.SuspendLayout();
             // 
             // pbNewGame
@@ -131,10 +133,21 @@ namespace BubbleTrouble
             this.lblCoundown.BackColor = System.Drawing.Color.Transparent;
             this.lblCoundown.Name = "lblCoundown";
             // 
+            // pbSound
+            // 
+            this.pbSound.BackColor = System.Drawing.Color.Transparent;
+            this.pbSound.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbSound.Image = global::BubbleTrouble.Properties.Resources.volumeOn;
+            resources.ApplyResources(this.pbSound, "pbSound");
+            this.pbSound.Name = "pbSound";
+            this.pbSound.TabStop = false;
+            this.pbSound.Click += new System.EventHandler(this.PbSound_Click);
+            // 
             // BubbleTrouble
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pbSound);
             this.Controls.Add(this.lblCoundown);
             this.Controls.Add(this.lblLevelNumber);
             this.Controls.Add(this.pbLevel);
@@ -146,8 +159,6 @@ namespace BubbleTrouble
             this.Controls.Add(this.pbNewGame);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "BubbleTrouble";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -161,6 +172,7 @@ namespace BubbleTrouble
             ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbScore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSound)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,6 +191,7 @@ namespace BubbleTrouble
         private System.Windows.Forms.Label lblLevelNumber;
         private System.Windows.Forms.Timer ReadyTimer;
         private System.Windows.Forms.Label lblCoundown;
+        private System.Windows.Forms.PictureBox pbSound;
     }
 }
 

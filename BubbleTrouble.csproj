@@ -208,5 +208,26 @@
   <ItemGroup>
     <None Include="Resources\ShowControlsBack.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Game.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Game1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameImg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameImg2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameImg3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\volumeOff.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,11 +1,7 @@
 using System;
 using System.Drawing;
 using System.Media;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Threading;
 
 // This is the code for your desktop app.
 // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
@@ -13,24 +9,37 @@ using System.Windows.Threading;
 namespace BubbleTrouble
 {
 
+    // ZA ZOGRA KOGA KJE PISHUVA DOKUMENTACIJa
+    /*  1. Propertito Boarder na formata e setirano na fixed3D za da ne mozhe korisnikot
+     *sam da si ja resizenuva.
+     *  2. 
+     */
     public partial class BubbleTrouble : Form
     {
         SoundPlayer player;
         Game CurrentGame;
         int countdown = 3;
-        bool activated = false;
+        bool activated = false,volume=true;
 
-        Point initialCoordinatesVolume = new Point(877, 12);
+        Point initialCoordinatesVolume = new Point(1200, 12);
         public BubbleTrouble()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+            player = new SoundPlayer();
+            //find song to play
         }
 
+        /* Nastan koj se povikuva pri klik na kopcheto New Game (Nova igra).
+         * So ovoj nastan se kreira nov objekt od klasata Game so shto
+         * se startuva novata igra. Dopolnitelno, se setira i tajmerot za soodvetnoto
+         * nivo, preostanatie zhivoti na igrachoot...
+         */
         private void PbNewGame_Click(object sender, EventArgs e)
         {
             CurrentGame = new Game(this.Width, this.Height);
             Player.Instance.ResetScore();
+            lblScore.Text = Player.Instance.GetScore().ToString();
             TimeRemainingLevel.Maximum = CurrentGame.Level.getTimeLimit();
             TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
             Player.Instance.LivesRemaining = 3;
@@ -45,14 +54,21 @@ namespace BubbleTrouble
             Invalidate(true);
         }
 
+        //nastan koj se povikuva pri sekoja promena na goleminata na formata
+        //ovoj nastan se povikuva i pri samiot start na porgramta
         private void BubbleTrouble_Resize(object sender, EventArgs e)
         {
             /*Funkcija koja se povikuva sekoj pat koga kje ima promena na goleminata na
-              * prozorecot
+              * prozorecot (sakame igrata da e postojano vo full screen).
             */
             WindowFormChanged();
         }
 
+        //metod koj se spravuva so goleminata na prozorecot
+        /* Dokolku se klikne kopcheto maximize, ako formata vekje e maksimizirana
+         * bi trebalo da dojde vo normalen format. Za da se sprechi toa site formi 
+         * se iscrtuvaat na novo so zgolemenite pozicii
+         */
         private void WindowFormChanged()
         {
             try
@@ -80,6 +96,7 @@ namespace BubbleTrouble
                     TimeRemainingLevel.Size = new Size(this.Width - 70, 20);
                     TimeRemainingLevel.BackColor = Color.Orange;
                     TimeRemainingLevel.Location = new Point(70, 0);
+                    pbSound.Location = initialCoordinatesVolume;
                     return;
                 }
                 else if(WindowState==FormWindowState.Minimized)
@@ -90,11 +107,12 @@ namespace BubbleTrouble
                 WindowState = FormWindowState.Maximized;
                 Invalidate(true);
 
-                //pbVolume.Location = initialCoordinatesVolume;
+                
             }
             catch { }
         }
 
+       
         private void BubbleTrouble_Load(object sender, EventArgs e)
         {
 
@@ -105,6 +123,12 @@ namespace BubbleTrouble
             pbShowControls.Visible = true;
         }
 
+        //metod koj ja iscrtuva celata forma
+        /* Dokolku nema nova zapochnata igra da se pokazhe eden screen dokolku ima
+         * vekje zapochnata igra da se pokazhe drug view
+         * Na nekoj nachin sluzhi kako kontroler za premin od ednen pogled
+         * vo drug bidejki se povikuva sekoj pat koga ima povik Invalidate
+         */
         private void BubbleTrouble_Paint(object sender, PaintEventArgs e)
         {
             if (CurrentGame != null)
@@ -119,6 +143,7 @@ namespace BubbleTrouble
                 pbLevel.Visible = true;
                 lblLevelNumber.Visible = true;
                 lblCoundown.Visible = true;
+                pbSound.Visible = false;
                 CurrentGame.StartCurrentLevel(e.Graphics);
 
             }
@@ -133,29 +158,34 @@ namespace BubbleTrouble
                 lblLevelNumber.Visible = false;
                 TimeRemainingLevel.Visible = false;
                 lblCoundown.Visible = false;
+                pbSound.Visible = true;
             }
         }
 
+        /*Nastan koj se povikuva pri klik na kopcheto Show Controls
+         * Se otvara nova forma vo koja se dava upatstvo za kontrolite koi se koristat 
+         *za igranje na igrata
+         */
         private void PbShowControls_Click(object sender, EventArgs e)
         {
             ShowControls newForm = new ShowControls();
 
-            if (newForm.ShowDialog() == DialogResult.OK)
-            {
-                // Da se dopishe za da mora de se iskluchi pred da se vratish
-                // na glavna forma
-            }
-            else
-            {
-                newForm.Close();
-            }
+            if (newForm.ShowDialog() == DialogResult.OK) {}
+            else newForm.Close();
+            
         }
 
+        /*nastan koj se povikuva sekoj pat koga so glushecot kje se pomine nad
+         *kopcheto Show Contorls. Slikata koja ja ima za kopcheto se zamenuva so druga
+        */
         private void PbShowControls_MouseHover(object sender, EventArgs e)
         {
             pbShowControls.Image = global::BubbleTrouble.Properties.Resources.showControlsBtn;
         }
 
+        /* nastan koj se povikuva sekoj pat koga so glushecot kje go napushti
+          *kopcheto Show Contorls. Slikata koja ja ima za kopcheto se zamenuva so druga
+         */
         private void PbShowControls_MouseLeave(object sender, EventArgs e)
         {
             pbShowControls.Image = global::BubbleTrouble.Properties.Resources.showControlsBtn2;
@@ -171,7 +201,17 @@ namespace BubbleTrouble
             pbNewGame.Image = global::BubbleTrouble.Properties.Resources.newGameBtn;
         }
 
-        [Obsolete]
+        /* Nastan so koj se regulira dvizhenjeto na topkite, menuvanje na nivo, resetiranje
+         * na nivo...na sekoj tick (10 ms) gi pridvizhuva site topki od nivoto, go namaluva
+         * vremeto koe e preostanato za dadenoto nivo, proveruva dali igrachot e pogoden 
+         * od bilo koja od topkite
+         * Dokolku isteche vremeto predvideno za nivoto ili igrachot e pogoden
+         * soodvetno nivoto se restira. Dopolnitelno, dokolku igrachot uspee da gi ispuka
+         * site topki od nivoto pred da isteche tajmerot, se preminuva na slednoto nivo
+         * Ovoj nastan go regulira preostanato vreme na toj nachin shto na sekoi 10 ms
+         * odzema 1 od momentalnata vrednos na progress barot so koj e pretstaveno
+         * vremeto koe e preostanato za nivoto
+         */
         private void BallTimer_Tick(object sender, EventArgs e)
         {
             if (CurrentGame != null)
@@ -191,6 +231,7 @@ namespace BubbleTrouble
                             activated = true;
                             CurrentGame.ResetLevel();
                             Player.Instance.SubstractOnLostLife();
+                            lblScore.Text = Player.Instance.GetScore().ToString();
                             TimeRemainingLevel.Value = CurrentGame.Level.getTimeLimit();
                         }
                         else
@@ -207,6 +248,7 @@ namespace BubbleTrouble
                         if (CurrentGame.Level.GetLevel() == 5)
                         {
                             lblCoundown.Text = "CONGRATULATIONS!";
+                            lblCoundown.Text = Player.Instance.GetScore().ToString();
                             lblCoundown.Location = new Point(2 * this.Width / 7, this.Height / 2);
                             lblCoundown.Visible = true;
                             activated = true;
@@ -238,6 +280,7 @@ namespace BubbleTrouble
                         {
                             CurrentGame.ResetLevel();
                             Player.Instance.SubstractOnLostLife();
+                            lblScore.Text = Player.Instance.GetScore().ToString();
                             activated = true;
                             lblCoundown.Visible = true;
                             countdown = 4;
@@ -258,6 +301,8 @@ namespace BubbleTrouble
             }
         }
 
+        //Nastan koj se generira pri klik na kopcheto oznacheno so prashalnik (Help)
+        //Otvara nova forma vo koja se objasnuva kako funkcionira igrata
         private void PbHelp_Click(object sender, EventArgs e)
         {
             ShowHelp newForm = new ShowHelp();
@@ -267,6 +312,13 @@ namespace BubbleTrouble
             }
         }
 
+
+        /* nastan koj se povikuva sekoj pat koga kje bide oslobodeno kopche. 
+        * So ovoj nastan go regulirame pukanjeto na chovecheto, odnosno dokolku
+        * pritisnatoto kopche e space togash se povikuva funkcijata za pukanje na igrachot.
+        * Dopolnitelno, pred pochetkot na sekoe nivo pukanjeto e 
+        * onevomozheno (vo toj moment na ekranot se prikazhuva ready!3,2,1.. i activated e true)
+        */
         private void BubbleTrouble_KeyUp(object sender, KeyEventArgs e)
         {
             if (CurrentGame != null && !activated)
@@ -284,6 +336,13 @@ namespace BubbleTrouble
             }
         }
 
+        /* nastan koj se povikuva sekoj pat koga kje bidepritisnato kopche. 
+         * So ovoj nastan go regulirame dvizhenjeto na chovecheto, odnosno dokolku
+         * pritisnatoto kopche e desnata strelka, igrachot se pridvizhuva vo desno, a 
+         * ako e levata strelka togash vo levo.
+         * Dopolnitelno, pred pochetkot na sekoe nivo mrdanejto levo ili desno e 
+         * onevomozheno (vo toj moment na ekranot se prikazhuva ready!3,2,1.. i activated e true)
+         */
         private void BubbleTrouble_KeyDown(object sender, KeyEventArgs e)
         {
             if(activated)
@@ -304,6 +363,13 @@ namespace BubbleTrouble
             Invalidate(true);
         }
 
+        /* So ova se kontrolira prikazhuvanjeto na labelata izmegju sekoe nivo
+         * Pred pochetok na novo nivo se ispishuva READY! i posta tajmerot odbrojuva
+         * od 3 nadolu...(na sekoj tick (1 sekund) se namaluva za eden tajmerot)
+         * Dopolnitelno istata labela se koristi i za ispishuvanje na GAME OVER
+         * dokolku igrachot gi izgubi site zhivtoi ili CONGRATULATIONS dokolku igrachot
+         * uspeshno ja zavrshi igrata
+         */
         private void ReadyTimer_Tick(object sender, EventArgs e)
         {
             if (activated)
@@ -339,6 +405,22 @@ namespace BubbleTrouble
                 }
 
                 Invalidate(true);
+            }
+        }
+
+        private void PbSound_Click(object sender, EventArgs e)
+        {
+            if(volume)
+            {
+                pbSound.Image = global::BubbleTrouble.Properties.Resources.volumeOff;
+                volume = !volume;
+                player.Play();
+            }
+            else
+            {
+                pbSound.Image = global::BubbleTrouble.Properties.Resources.volumeOn;
+                volume = !volume;
+                player.Stop();
             }
         }
     }

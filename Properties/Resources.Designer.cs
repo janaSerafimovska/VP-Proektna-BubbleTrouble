@@ -83,6 +83,16 @@ namespace BubbleTrouble.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gameImg3 {
+            get {
+                object obj = ResourceManager.GetObject("gameImg3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imagePlayerFinal {
             get {
                 object obj = ResourceManager.GetObject("imagePlayerFinal", resourceCulture);
@@ -203,16 +213,6 @@ namespace BubbleTrouble.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ShowControlsBack {
-            get {
-                object obj = ResourceManager.GetObject("ShowControlsBack", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap showControlsBtn {
             get {
                 object obj = ResourceManager.GetObject("showControlsBtn", resourceCulture);
@@ -236,6 +236,16 @@ namespace BubbleTrouble.Properties {
         internal static System.Drawing.Bitmap spaceKeyImg1 {
             get {
                 object obj = ResourceManager.GetObject("spaceKeyImg1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap volumeOff {
+            get {
+                object obj = ResourceManager.GetObject("volumeOff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

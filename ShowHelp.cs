@@ -16,5 +16,20 @@ namespace BubbleTrouble
         {
             InitializeComponent();
         }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBox1_Resize(object sender, EventArgs e)
+        {
+            this.Size = new Size(700, 600);
+        }
     }
 }
