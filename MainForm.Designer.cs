@@ -152,6 +152,7 @@ namespace BubbleTrouble
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BubbleTrouble_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.BubbleTrouble_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BubbleTrouble_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BubbleTrouble_KeyUp);
             this.Resize += new System.EventHandler(this.BubbleTrouble_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pbNewGame)).EndInit();

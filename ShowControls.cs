@@ -9,6 +9,5 @@ namespace BubbleTrouble
             InitializeComponent();
         }
 
-    
     }
 }

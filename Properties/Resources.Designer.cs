@@ -73,6 +73,16 @@ namespace BubbleTrouble.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap controls {
+            get {
+                object obj = ResourceManager.GetObject("controls", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imagePlayerFinal {
             get {
                 object obj = ResourceManager.GetObject("imagePlayerFinal", resourceCulture);
@@ -86,6 +96,16 @@ namespace BubbleTrouble.Properties {
         internal static System.Drawing.Bitmap ImgLife {
             get {
                 object obj = ResourceManager.GetObject("ImgLife", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap leftKeyImg1 {
+            get {
+                object obj = ResourceManager.GetObject("leftKeyImg1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +173,9 @@ namespace BubbleTrouble.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap score {
+        internal static System.Drawing.Bitmap RightKey {
             get {
-                object obj = ResourceManager.GetObject("score", resourceCulture);
+                object obj = ResourceManager.GetObject("RightKey", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +183,19 @@ namespace BubbleTrouble.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap scoreImg {
+        internal static System.Drawing.Bitmap rightKeyImg {
             get {
-                object obj = ResourceManager.GetObject("scoreImg", resourceCulture);
+                object obj = ResourceManager.GetObject("rightKeyImg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap score {
+            get {
+                object obj = ResourceManager.GetObject("score", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +216,16 @@ namespace BubbleTrouble.Properties {
         internal static System.Drawing.Bitmap showControlsBtn2 {
             get {
                 object obj = ResourceManager.GetObject("showControlsBtn2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spaceKeyImg1 {
+            get {
+                object obj = ResourceManager.GetObject("spaceKeyImg1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

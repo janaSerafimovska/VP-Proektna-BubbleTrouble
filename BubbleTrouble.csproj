@@ -52,6 +52,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="GreenBall.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="LevelFive.cs" />
     <Compile Include="LevelOne.cs" />
     <Compile Include="LevelTwo.cs" />
     <Compile Include="MainForm.cs">
@@ -156,6 +157,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\playerRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackgroundLevel1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LeftKey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RightKey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spaceKey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leftKeyImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leftKeyImg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spaceKeyImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spaceImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spaceKey1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\space.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spaceKeyImg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rightKeyImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rightKeyImg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\controlsImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\controls.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

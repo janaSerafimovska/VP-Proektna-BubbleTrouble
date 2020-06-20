@@ -20,100 +20,14 @@ namespace BubbleTrouble
         int cnt = 0, countdown = 3;
         bool activated = false;
 
-        int WorkersDelay = 60;
-
-        Thread threadKeyLeft;
-        Thread threadKeyRight;
-        Thread threadInvalidate;
-
         Point initialCoordinatesVolume = new Point(877, 12);
         public BubbleTrouble()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            threadKeyLeft = new Thread(KeyLeftWorker);
-            threadKeyRight = new Thread(KeyRightWorker);
-            threadInvalidate = new Thread(InvalidateGraphics);
-            threadKeyLeft.Start();
-            threadKeyRight.Start();
-            threadInvalidate.Start();
         }
 
-        private void InvalidateGraphics()
-        {
-            while (true)
-            {
-                Thread.Sleep(100);
-                try
-                {
-                    Invoke((MethodInvoker)delegate
-                    {
-                        Invalidate(true);
-                    });
-                }
-                catch { }
-            }
-        }
-
-        [STAThread]
-        private void KeyLeftWorker()
-        {
-            try
-            {
-                while (true)
-                {
-                    Thread.Sleep(WorkersDelay);
-
-                    Invoke((MethodInvoker)delegate
-                    {
-                        if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.Left))
-                        {
-                            if (CurrentGame != null)
-                            {
-                                // if (cnt % 3 == 0) CurrentGame.MoveBalls();
-                                //cnt++;
-                                //if (cnt > 1000001) cnt = 0;
-                                CurrentGame.MovePlayerLeft();
-                            }
-                        }
-
-                    });
-                }
-            }
-            catch { }
-
-        }
-
-        [STAThread]
-        private void KeyRightWorker()
-        {
-            try
-            {
-                while (true)
-                {
-                    Thread.Sleep(WorkersDelay);
-
-                    Invoke((MethodInvoker)delegate
-                    {
-
-                        if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.Right))
-                        {
-                            if (CurrentGame != null)
-                            {
-                                //JANA SLIKI DODADI ZA DA SE MENJA CHOVECHETO
-                                //if (cnt % 3 == 0) CurrentGame.MoveBalls();
-                                //cnt++;
-                                //if (cnt > 1000001) cnt = 0;
-                                CurrentGame.MovePLayerRight();
-                            }
-                        }
-                    });
-                }
-            }
-            catch { }
-
-        }
-
+     
         private void PbNewGame_Click(object sender, EventArgs e)
         {
 
@@ -130,8 +44,7 @@ namespace BubbleTrouble
             lblCoundown.Visible = true;
             activated = true;
             lblLevelNumber.Text = "1";
-            Player.Instance.ResetScore();
-            Player.Instance.ResetCurrentPosition();
+
             Invalidate(true);
         }
 
@@ -143,7 +56,6 @@ namespace BubbleTrouble
             WindowFormChanged();
         }
 
-        private delegate void tmp();
         private void WindowFormChanged()
         {
             try
@@ -161,16 +73,20 @@ namespace BubbleTrouble
                     pbHelp.Size = new Size(60, 60);
                     pbScore.Location = new Point(-40, 20);
                     pbScore.Size = new Size(200, 70);
-                    lblScore.Location = new Point(140, 40);
+                    lblScore.Location = new Point(140, 50);
                     lblScore.Size = new Size(200, 70);
                     pbLevel.Location = new Point(this.Width - 300, 20);
                     pbLevel.Size = new Size(200, 70);
-                    lblLevelNumber.Location = new Point(this.Width - 100, 40);
+                    lblLevelNumber.Location = new Point(this.Width - 100, 45);
                     lblLevelNumber.Size = new Size(200, 70);
                     lblCoundown.Location = new Point(3 * this.Width / 7, this.Height / 2);
                     TimeRemainingLevel.Size = new Size(this.Width - 70, 20);
                     TimeRemainingLevel.BackColor = Color.Orange;
                     TimeRemainingLevel.Location = new Point(70, 0);
+                    return;
+                }
+                else if(WindowState==FormWindowState.Minimized)
+                {
                     return;
                 }
 
@@ -266,13 +182,6 @@ namespace BubbleTrouble
             {
                 if (!activated)
                 {
-                    try
-                    {
-                        if ((threadKeyLeft.ThreadState & ThreadState.Suspended) != 0) threadKeyLeft.Resume();
-                        if ((threadKeyRight.ThreadState & ThreadState.Suspended) != 0) threadKeyRight.Resume();
-
-                    }
-                    catch { }
                     lblScore.Text = String.Format("{0}", Player.Instance.GetScore());
                     CurrentGame.MoveBalls();
                     if (TimeRemainingLevel.Value - 1 < 0 && CurrentGame != null && CurrentGame.Level.Balls.Count != 0)
@@ -347,15 +256,6 @@ namespace BubbleTrouble
 
                     Invalidate(true);
                 }
-                else
-                {
-                    try
-                    {
-                        threadKeyRight.Suspend();
-                        threadKeyLeft.Suspend();
-                    }
-                    catch { }
-                }
             }
         }
 
@@ -380,6 +280,30 @@ namespace BubbleTrouble
                     lblScore.Text = String.Format("{0}", Player.Instance.GetScore());
                 }
             }
+            else
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void BubbleTrouble_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(activated)
+            {
+                e.SuppressKeyPress = true;
+            }
+            else
+            {
+                if (e.KeyCode == Keys.Right)
+                {
+                    CurrentGame.MovePLayerRight();
+                }
+                else if (e.KeyCode == Keys.Left)
+                {
+                    CurrentGame.MovePlayerLeft();
+                }
+            }          
+            Invalidate(true);
         }
 
         private void ReadyTimer_Tick(object sender, EventArgs e)
@@ -404,6 +328,9 @@ namespace BubbleTrouble
                     countdown -= 1;
                     if (countdown == 0)
                     {
+                        Player.Instance.ResetScore();
+                        lblScore.Text = Player.Instance.GetScore().ToString();
+                        Player.Instance.ResetCurrentPosition();
                         CurrentGame = null;
                         countdown = 3;
                        
