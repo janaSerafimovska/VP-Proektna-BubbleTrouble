@@ -360,7 +360,7 @@ namespace BubbleTrouble
                     CurrentGame.MovePlayerLeft();
                 }
             }          
-            Invalidate(true);
+            //Invalidate(true);
         }
 
         /* So ova se kontrolira prikazhuvanjeto na labelata izmegju sekoe nivo
@@ -372,7 +372,7 @@ namespace BubbleTrouble
          */
         private void ReadyTimer_Tick(object sender, EventArgs e)
         {
-            if (activated)
+            if (activated && CurrentGame != null)
             {
                 if (countdown - 1 > 0 && countdown <= 4 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Equals("CONGRATULATIONS!") && !lblCoundown.Text.Equals("TIMES UP!")))
                 {

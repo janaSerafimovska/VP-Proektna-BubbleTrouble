@@ -23,28 +23,28 @@ namespace BubbleTrouble
 
         public override void GenerateBalls()
         {
-            Ball ball = new GreenBall(new Point(1050, 50), Width, Height);
+            Ball ball = new GreenBall(new Point((8 * Width) / 13, (2 * Height) / 12), Width, Height);
             AddBall(ball);
-            ball = new BlueBall(new Point(1050, 150), Width, Height);
+            ball = new BlueBall(new Point((8 * Width) / 13, (3 * Height) / 12), Width, Height);
             AddBall(ball);
-            ball = new GreenBall(new Point(1050, 250), Width, Height);
+            ball = new GreenBall(new Point((8 * Width) / 13, (4 * Height) / 12), Width, Height);
             AddBall(ball);
-            ball = new BlueBall(new Point(1050, 350), Width, Height);
+            ball = new BlueBall(new Point((8 * Width) / 13, (5 * Height) / 12), Width, Height);
             AddBall(ball);
-            ball = new GreenBall(new Point(1050, 450), Width, Height);
+            ball = new GreenBall(new Point((8 * Width) / 13, (6 * Height) / 12), Width, Height);
             AddBall(ball);
-            ball = new RedBall(new Point(1050, 550), Width, Height);
+            ball = new RedBall(new Point((8 * Width) / 13, (7 * Height) / 12), Width, Height);
             AddBall(ball);
         }
 
         //Metod koj generira prepreki za dadenoto nivo.
         public override void GenerateObstacles()
         {
-            Obstacle obstacle = new Obstacle(Color.DarkSlateGray, new Point(1200, 300), new Point( 1500, 300), new Point(1500, 630), new Point(1200, 630));
+            Obstacle obstacle = new Obstacle(Color.DarkSlateGray, new Point((9*Width)/13, Height/4), new Point((11*Width)/13, Height/4), new Point((11 * Width)/13, (7*Height)/10), new Point((9*Width)/13, (7*Height)/10));
             AddObstacle(obstacle);
-            obstacle = new Obstacle(Color.DarkSlateGray, new Point(218, 400), new Point(653, 400), new Point(653, 650), new Point(218, 650));
+            obstacle = new Obstacle(Color.DarkSlateGray, new Point(218, (3*Height/7)), new Point(653, (3*Height)/7), new Point(653, (5*Height)/7), new Point(218, (5*Height)/7));
             AddObstacle(obstacle);
-            obstacle = new Obstacle(Color.DarkSlateGray, new Point(654, 80), new Point(700, 80), new Point(700, 320), new Point(654, 320));
+            obstacle = new Obstacle(Color.DarkSlateGray, new Point((6*Width)/16, Height/10), new Point((7*Width)/16, Height/10), new Point((7*Width)/16, Height/3), new Point((6*Width)/16, Height/3));
             AddObstacle(obstacle);
         }
     }

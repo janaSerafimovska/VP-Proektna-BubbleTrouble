@@ -20,11 +20,11 @@ namespace BubbleTrouble
         //Metod koj generira topcinja za dadenoto nivo
         public override void GenerateBalls()
         {
-            Ball ball = new GreenBall(new Point(150, 300), Width, Height);
+            Ball ball = new GreenBall(new Point(Width/10, 2*Height/5), Width, Height);
             AddBall(ball);
-            ball = new GreenBall( new Point(700, 200), Width, Height);
+            ball = new GreenBall( new Point((4*Width)/10, Height/5), Width, Height);
             AddBall(ball);
-            ball = new BlueBall( new Point(1000, 400),  Width, Height);
+            ball = new BlueBall( new Point((6*Width)/10, 3*Height/5),  Width, Height);
             AddBall(ball);
         }
 
@@ -32,7 +32,7 @@ namespace BubbleTrouble
         public override void GenerateObstacles()
         {
             //Only 1 obstacle in lvl 2.
-            Obstacle obstacle = new Obstacle(Color.DarkSlateGray, new Point(300, 200), new Point(600, 200), new Point(600, 600), new Point(300, 600));
+            Obstacle obstacle = new Obstacle(Color.DarkSlateGray, new Point(Width/6, Height/5), new Point(Width/3, Height/5), new Point(Width/3, (3*Height)/5), new Point(Width/6, (3*Height)/5));
             AddObstacle(obstacle);
         }
 

@@ -21,14 +21,14 @@ namespace BubbleTrouble
         //Metod koj generira topcinja za dadenoto nivo
         public override void GenerateBalls()
         {
-            Ball ball = new GreenBall(new Point(630, 50), Width, Height);
+            Ball ball = new GreenBall(new Point(Width/2, Height/12), Width, Height);
             ball.InvertDirection();
             AddBall(ball);
-            ball = new BlueBall(new Point(630, 50), Width, Height);
+            ball = new BlueBall(new Point(Width/2, Height/12), Width, Height);
             AddBall(ball);
-            ball = new GreenBall(new Point(630, 50), Width, Height);
+            ball = new GreenBall(new Point(Width/2, Height/12), Width, Height);
             AddBall(ball);
-            ball = new BlueBall(new Point(630, 50), Width, Height);
+            ball = new BlueBall(new Point(Width/2, Height/12), Width, Height);
             ball.InvertDirection();
             AddBall(ball);
         }
