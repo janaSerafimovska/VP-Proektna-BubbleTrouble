@@ -42,6 +42,7 @@ namespace BubbleTrouble
             this.ReadyTimer = new System.Windows.Forms.Timer(this.components);
             this.lblCoundown = new System.Windows.Forms.Label();
             this.pbSound = new System.Windows.Forms.PictureBox();
+            this.songTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbNewGame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbShowControls)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHelp)).BeginInit();
@@ -143,6 +144,12 @@ namespace BubbleTrouble
             this.pbSound.TabStop = false;
             this.pbSound.Click += new System.EventHandler(this.PbSound_Click);
             // 
+            // songTimer
+            // 
+            this.songTimer.Enabled = true;
+            this.songTimer.Interval = 163000;
+            this.songTimer.Tick += new System.EventHandler(this.SongTimer_Tick);
+            // 
             // BubbleTrouble
             // 
             resources.ApplyResources(this, "$this");
@@ -192,6 +199,7 @@ namespace BubbleTrouble
         private System.Windows.Forms.Timer ReadyTimer;
         private System.Windows.Forms.Label lblCoundown;
         private System.Windows.Forms.PictureBox pbSound;
+        private System.Windows.Forms.Timer songTimer;
     }
 }
 

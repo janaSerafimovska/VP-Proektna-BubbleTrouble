@@ -8,26 +8,22 @@ using System.Windows.Forms;
 
 namespace BubbleTrouble
 {
-
-    // ZA ZOGRA KOGA KJE PISHUVA DOKUMENTACIJa
-    /*  1. Propertito Boarder na formata e setirano na fixed3D za da ne mozhe korisnikot
-     *sam da si ja resizenuva.
-     *  2. 
-     */
     public partial class BubbleTrouble : Form
     {
         SoundPlayer player;
         Game CurrentGame;
         int countdown = 3;
         bool activated = false,volume=true;
+       
 
         Point initialCoordinatesVolume = new Point(1200, 12);
         public BubbleTrouble()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            player = new SoundPlayer();
-            //find song to play
+            player = new SoundPlayer(global::BubbleTrouble.Properties.Resources.song);
+            player.Play();
+            songTimer.Start();
         }
 
         /* Nastan koj se povikuva pri klik na kopcheto New Game (Nova igra).
@@ -408,19 +404,28 @@ namespace BubbleTrouble
             }
         }
 
+        private void SongTimer_Tick(object sender, EventArgs e)
+        {
+            if(volume==true)
+            {
+                Console.WriteLine(volume);
+                player.Play();
+            }
+        }
+
         private void PbSound_Click(object sender, EventArgs e)
         {
             if(volume)
             {
                 pbSound.Image = global::BubbleTrouble.Properties.Resources.volumeOff;
                 volume = !volume;
-                player.Play();
+                player.Stop();
             }
             else
             {
                 pbSound.Image = global::BubbleTrouble.Properties.Resources.volumeOn;
                 volume = !volume;
-                player.Stop();
+                player.Play();
             }
         }
     }
