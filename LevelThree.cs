@@ -34,22 +34,19 @@ namespace BubbleTrouble
         }
 
         //Metod koj generira prepreki za dadenoto nivo
+        //koordinatite se zadadeni vo ovoj format za da se prikazhat isto na sekoj ekran(sekoj ekran ima razlichna rezolucija)
         public override void GenerateObstacles()
         {
-            Obstacle obstacle = new Obstacle(Color.DarkSlateGray, new Point(300, 120), new Point(370, 120), new Point(370, 200), new Point(300, 200));
+            Obstacle obstacle = new Obstacle(Color.DarkSlateGray, new Point(4*this.Width/17, 3*this.Height/15), new Point(5*this.Width/17, 3 * this.Height / 15), new Point(5*this.Width/17, 5 * this.Height / 15), new Point(4*this.Width/17, 5* this.Height / 15));
             AddObstacle(obstacle);
-            obstacle = new Obstacle(Color.DarkSlateGray, new Point(600, 120), new Point(670, 120), new Point(670, 200), new Point(600, 200));
+            obstacle = new Obstacle(Color.DarkSlateGray, new Point(8 * this.Width / 17, 3 * this.Height / 15), new Point(9 * this.Width / 17, 3 * this.Height / 15), new Point(9 * this.Width / 17, 5 * this.Height / 15), new Point(8 * this.Width / 17, 5 * this.Height / 15));
             AddObstacle(obstacle);
-            obstacle = new Obstacle(Color.DarkSlateGray, new Point(900, 120), new Point(970, 120), new Point(970, 200), new Point(900, 200));
+            obstacle = new Obstacle(Color.DarkSlateGray, new Point(12 * this.Width/17, 3 * this.Height / 15), new Point(13 * this.Width / 17, 3 * this.Height / 15), new Point(13 * this.Width / 17, 5 * this.Height / 15), new Point(12 * this.Width / 17, 5 * this.Height / 15));
             AddObstacle(obstacle);
-            obstacle = new Obstacle(Color.DarkSlateGray, new Point(300, 120), new Point(370, 120), new Point(370, 200), new Point(300, 200));
+            obstacle = new Obstacle(Color.MediumPurple, new Point(9 * this.Width / 25, 8 * this.Height / 15), new Point(10 * this.Width / 25, 8 * this.Height / 15), new Point(10 * this.Width / 25, 9 * this.Height / 15), new Point(9 * this.Width / 25, 9 * this.Height / 15));
             AddObstacle(obstacle);
-            obstacle = new Obstacle(Color.MediumPurple, new Point(450, 450), new Point(490, 450), new Point(490, 490), new Point(450, 490));
+            obstacle = new Obstacle(Color.MediumPurple, new Point(15 * this.Width / 25, 8 * this.Height / 15), new Point(16 * this.Width / 25, 8 * this.Height / 15), new Point(16* this.Width / 25, 9 * this.Height / 15), new Point(15 * this.Width / 25, 9 * this.Height / 15));
             AddObstacle(obstacle);
-            obstacle = new Obstacle(Color.MediumPurple, new Point(850, 450), new Point(890, 450), new Point(890, 490), new Point(850, 490));
-            AddObstacle(obstacle);
-
-
 
         }
     }
