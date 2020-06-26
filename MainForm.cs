@@ -92,7 +92,7 @@ namespace BubbleTrouble
                     TimeRemainingLevel.Size = new Size(this.Width - 70, 20);
                     TimeRemainingLevel.BackColor = Color.Orange;
                     TimeRemainingLevel.Location = new Point(70, 0);
-                    pbSound.Location = initialCoordinatesVolume;
+                    pbSound.Location = new Point(this.Width - 70, 20);
                     return;
                 }
                 else if(WindowState==FormWindowState.Minimized)
@@ -243,8 +243,8 @@ namespace BubbleTrouble
                     {
                         if (CurrentGame.Level.GetLevel() == 5)
                         {
-                            lblCoundown.Text = "CONGRATULATIONS!";
-                            lblCoundown.Text = Player.Instance.GetScore().ToString();
+                            lblCoundown.Text = "CONGRATULATIONS!\nYOUR SCORE IS: ";
+                            lblCoundown.Text += Player.Instance.GetScore().ToString();
                             lblCoundown.Location = new Point(2 * this.Width / 7, this.Height / 2);
                             lblCoundown.Visible = true;
                             activated = true;
@@ -370,19 +370,19 @@ namespace BubbleTrouble
         {
             if (activated && CurrentGame != null)
             {
-                if (countdown - 1 > 0 && countdown <= 4 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Equals("CONGRATULATIONS!") && !lblCoundown.Text.Equals("TIMES UP!")))
+                if (countdown - 1 > 0 && countdown <= 4 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Contains("CONGRATULATIONS!") && !lblCoundown.Text.Equals("TIMES UP!")))
                 {
                     countdown -= 1;
                     lblCoundown.Text = "READY!\n";
                     lblCoundown.Text += countdown.ToString();
                 }
-                else if (countdown - 1 == 0 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Equals("CONGRATULATIONS!")))
+                else if (countdown - 1 == 0 && (!lblCoundown.Text.Equals("GAME OVER") && !lblCoundown.Text.Contains("CONGRATULATIONS!")))
                 {
                     lblCoundown.Text = "";
                     lblCoundown.Visible = false;
                     activated = false;
                 }
-                else if (lblCoundown.Text == "GAME OVER" || lblCoundown.Text == "CONGRATULATIONS!")
+                else if (lblCoundown.Text == "GAME OVER" || lblCoundown.Text.Contains("CONGRATULATIONS!"))
                 {
                     countdown -= 1;
                     if (countdown == 0)
