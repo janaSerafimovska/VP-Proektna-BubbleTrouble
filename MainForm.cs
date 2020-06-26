@@ -41,6 +41,8 @@ namespace BubbleTrouble
             Player.Instance.LivesRemaining = 3;
             BallTimer.Enabled = true;
             BallTimer.Start();
+            if (this.Width >= 2000 && this.Width < 3000) BallTimer.Interval = 20;
+            if (this.Width >= 3000) BallTimer.Interval = 10;
             ReadyTimer.Enabled = true;
             ReadyTimer.Start();
             lblCoundown.Text = "READY!\n" + countdown.ToString();
